@@ -1,0 +1,138 @@
+/* Settings window. Colors, font, and .box come from styles.css. */
+
+.settings {
+  /* --muted (#626567) is for borders; text needs more contrast (5.4:1 on --background). */
+  --muted-text: #8c8f91;
+
+  width: min(calc(100% - 40px), 640px);
+  margin: 0 auto;
+  padding: 34px 0 56px;
+}
+
+.panel + .panel {
+  margin-top: 48px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panel-title {
+  margin: 0;
+  color: var(--muted-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panel-meta,
+.day-count,
+.done-time {
+  color: var(--muted-text);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.day + .day {
+  margin-top: 26px;
+}
+
+.day-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.day-count {
+  font-weight: 400;
+}
+
+.done-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.done {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 6px 0;
+}
+
+.done .box {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border-color: var(--accent);
+  border-radius: 4px;
+  color: #101419;
+  background: var(--accent);
+}
+
+.done .box::after {
+  width: 7px;
+  height: 3.5px;
+}
+
+.done-text {
+  min-width: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.45;
+  opacity: 0.78;
+  overflow-wrap: anywhere;
+}
+
+.done-time {
+  line-height: 1.45rem;
+}
+
+.empty,
+.database-note {
+  max-width: 34em;
+  margin: 0;
+  color: var(--muted-text);
+  line-height: 1.55;
+}
+
+.database-path {
+  margin: 0 0 14px;
+  color: var(--text);
+  font: 0.82rem/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+  opacity: 0.78;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+.button {
+  padding: 7px 14px;
+  border: 1.5px solid var(--muted);
+  border-radius: 6px;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.button:hover {
+  border-color: var(--muted-text);
+}
+
+.button:focus-visible {
+  outline: 2px solid rgb(145 184 246 / 38%);
+  outline-offset: 3px;
+}

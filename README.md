@@ -28,8 +28,16 @@ You can also clear the block in Terminal: `xattr -dr com.apple.quarantine "/Appl
 | Edit an item | Click its text, change it, then press <kbd>Enter</kbd> |
 | Cancel an edit | Press <kbd>Esc</kbd> |
 | Finish an item | Click its checkbox |
+| See what you finished | Click the menu bar icon and choose **Settings…**, or press <kbd>⌘</kbd> <kbd>,</kbd> |
+| Hide the list | Close the window. Focus Zen keeps running in the menu bar |
+| Bring the list back | Click the menu bar icon and choose **Open Focus Zen** |
+| Quit | Click the menu bar icon and choose **Quit Focus Zen**, or press <kbd>⌘</kbd> <kbd>Q</kbd> |
 
-Finished items leave the list. They stay in the database with a `completed_at` timestamp, next to the `created_at` timestamp of every item.
+Finished items leave the list. They stay in the database with a `completed_at` timestamp, next to the `created_at` timestamp of every item. **Settings → History** shows them grouped by the day you finished them, newest first. Hover an item to see when it was added and finished.
+
+![The History list in Settings, grouped by day](docs/history.png)
+
+While the list window is closed, Focus Zen has no Dock icon. It shows only in the menu bar, next to Wi-Fi and Bluetooth.
 
 ## Run from source
 
@@ -85,15 +93,19 @@ The database file is `focus-zen.db` in the app's config folder:
 | Linux | `~/.config/com.focuszen.desktop/` |
 | Windows | `%APPDATA%\com.focuszen.desktop\` |
 
-Each computer keeps its own list. To move your list, copy that folder while the app is closed.
+**Settings → Database** shows the exact path and has a **Show in Finder** button.
+
+Each computer keeps its own list. To move your list to another computer, quit Focus Zen first (menu bar icon → **Quit Focus Zen**; closing the window is not enough), then copy that folder.
 
 ## Project layout
 
 ```text
-src/                     UI: index.html, styles.css, app.js (plain JavaScript, built by Vite)
-src-tauri/               Rust app: window setup and the SQLite plugin
+src/                     List window: index.html, styles.css, app.js (plain JavaScript, built by Vite)
+src/settings.*           Settings window: History and Database
+src/lib/                 Shared code: the database repository and the History date helpers (with tests)
+src-tauri/src/           Rust app: windows, menu bar icon, macOS app menu, database location
 src-tauri/migrations/    SQL migrations, applied on start
-src-tauri/capabilities/  Permissions the UI has for the SQL plugin
+src-tauri/capabilities/  Permissions per window (only the list window can write)
 ```
 
 ## Contributing
@@ -101,10 +113,12 @@ src-tauri/capabilities/  Permissions the UI has for the SQL plugin
 Issues and pull requests are welcome. Before you open a pull request, run the same checks as CI:
 
 ```sh
+pnpm test
 pnpm build
 cd src-tauri
 cargo fmt --check
 cargo clippy --all-targets --locked -- -D warnings
+cargo test --locked
 ```
 
 ## License

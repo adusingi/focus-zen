@@ -1,8 +1,4 @@
-import Database from "@tauri-apps/plugin-sql";
-
-const databaseUrl = "sqlite:focus-zen.db";
-const browserStorageKey = "focus-zen-todos-v2";
-const legacyStorageKey = "focus-zen-follow-ups-v1";
+import { createRepository } from "./lib/repository.js";
 
 const page = document.querySelector("#page");
 const taskList = document.querySelector("#tasks");
@@ -11,10 +7,6 @@ const announcer = document.querySelector("#announcer");
 
 let repository;
 let tasks = [];
-
-function isTauri() {
-  return "__TAURI_INTERNALS__" in window;
-}
 
 function createId() {
   return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
@@ -32,82 +24,6 @@ function focusDraft() {
   range.collapse(false);
   selection.removeAllRanges();
   selection.addRange(range);
-}
-
-function createBrowserRepository() {
-  function readAll() {
-    try {
-      const saved = JSON.parse(localStorage.getItem(browserStorageKey));
-      if (Array.isArray(saved)) return saved;
-
-      const legacy = JSON.parse(localStorage.getItem(legacyStorageKey));
-      if (!Array.isArray(legacy)) return [];
-
-      const migratedAt = new Date().toISOString();
-      const migrated = legacy.map((task) => ({
-        id: task.id,
-        text: task.text,
-        created_at: migratedAt,
-        completed_at: null,
-      }));
-      localStorage.setItem(browserStorageKey, JSON.stringify(migrated));
-      return migrated;
-    } catch {
-      return [];
-    }
-  }
-
-  function writeAll(records) {
-    localStorage.setItem(browserStorageKey, JSON.stringify(records));
-  }
-
-  return {
-    async loadOpen() {
-      return readAll().filter((task) => !task.completed_at);
-    },
-
-    async add(task) {
-      writeAll([...readAll(), task]);
-    },
-
-    async update(id, text) {
-      writeAll(readAll().map((task) => (task.id === id ? { ...task, text } : task)));
-    },
-
-    async finish(id, completedAt) {
-      writeAll(
-        readAll().map((task) => (task.id === id ? { ...task, completed_at: completedAt } : task)),
-      );
-    },
-  };
-}
-
-async function createRepository() {
-  if (!isTauri()) return createBrowserRepository();
-
-  const database = await Database.load(databaseUrl);
-  return {
-    async loadOpen() {
-      return database.select(
-        "SELECT id, text, created_at, completed_at FROM todos WHERE completed_at IS NULL ORDER BY created_at ASC, id ASC",
-      );
-    },
-
-    async add(task) {
-      await database.execute(
-        "INSERT INTO todos (id, text, created_at, completed_at) VALUES ($1, $2, $3, NULL)",
-        [task.id, task.text, task.created_at],
-      );
-    },
-
-    async update(id, text) {
-      await database.execute("UPDATE todos SET text = $1 WHERE id = $2", [text, id]);
-    },
-
-    async finish(id, completedAt) {
-      await database.execute("UPDATE todos SET completed_at = $1 WHERE id = $2", [completedAt, id]);
-    },
-  };
 }
 
 function reportSaveError(error) {

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#18191a" />
+    <title>Settings</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/settings.css" />
+  </head>
+
+  <body>
+    <main class="settings">
+      <section class="panel" aria-labelledby="history-title">
+        <header class="panel-header">
+          <h1 class="panel-title" id="history-title">History</h1>
+          <span class="panel-meta" id="history-total"></span>
+        </header>
+
+        <div class="days" id="history"></div>
+
+        <p class="empty" id="history-empty" hidden>
+          Nothing finished yet. When you tick off an item, it shows here under the day you finished it.
+        </p>
+      </section>
+
+      <section class="panel" aria-labelledby="database-title">
+        <header class="panel-header">
+          <h2 class="panel-title" id="database-title">Database</h2>
+        </header>
+
+        <p class="database-path" id="database-path"></p>
+        <button class="button" id="database-reveal" type="button" hidden>Show in Finder</button>
+      </section>
+
+      <p class="sr-only" id="status" aria-live="polite"></p>
+    </main>
+
+    <script type="module" src="/settings.js"></script>
+  </body>
+</html>

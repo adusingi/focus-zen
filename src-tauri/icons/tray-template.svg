@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Menu bar template icon: the app icon's box and check, in black on transparent.
+       Render to tray-template.png at 36x36 (18pt @2x). macOS tints it for light and dark menu bars. -->
+  <rect x="4.5" y="4.5" width="27" height="27" rx="7" fill="none" stroke="#000" stroke-width="3"/>
+  <path d="M10.6 18.4l4.8 5 10-11.6" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4"/>
+</svg>
