@@ -20,6 +20,7 @@ jobs:
   macos:
     name: macOS universal .dmg
     runs-on: macos-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
