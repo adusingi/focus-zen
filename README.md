@@ -1,3 +1,5 @@
+<img src="src-tauri/icons/128x128@2x.png" width="128" height="128" alt="Focus Zen app icon: a Tai-Chi practitioner in black ink on warm paper">
+
 # Focus Zen
 
 [![CI](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml/badge.svg)](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml)
@@ -121,6 +123,18 @@ cargo clippy --all-targets --locked -- -D warnings
 cargo test --locked
 ```
 
+## App icon
+
+The icon is a Tai-Chi practitioner in black ink on warm paper, made from an illustration printed on a T-shirt. `src-tauri/icons/icon-source.png` is the 1024 × 1024 master on the macOS icon grid. To make every platform size again after you change it:
+
+```sh
+pnpm tauri icon src-tauri/icons/icon-source.png
+```
+
+The menu bar icon is separate: `src-tauri/icons/tray-template.svg`, rendered to `tray-template.png` (36 × 36, black on transparent).
+
 ## License
 
 [MIT](LICENSE) © 2026 Aimable Dusingizimana
+
+The MIT license covers the code. It does not cover the illustration in the app icon, which belongs to its artist.

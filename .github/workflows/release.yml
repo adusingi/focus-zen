@@ -68,6 +68,9 @@ jobs:
           lipo "$app/Contents/MacOS/focus-zen" -verify_arch arm64 x86_64
           codesign --verify --deep --strict "$app"
           test -L "$mount/Applications"
+          # Without bundle.icon in tauri.conf.json the app ships with the generic icon.
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIconFile' "$app/Contents/Info.plist")" = "icon.icns"
+          test -s "$app/Contents/Resources/icon.icns"
           hdiutil detach "$mount"
 
           shasum -a 256 "$name" > "$name.sha256"
