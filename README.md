@@ -5,14 +5,14 @@ A small Tauri 2 desktop checklist. Items are stored locally in SQLite with creat
 ## Develop
 
 ```sh
-npm install
-npm run tauri dev
+pnpm install
+pnpm tauri dev
 ```
 
 ## Build for this Mac
 
 ```sh
-npm run tauri build
+pnpm tauri build
 ```
 
 The macOS app and installer are written under `src-tauri/target/release/bundle/`.

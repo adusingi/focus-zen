@@ -173,6 +173,7 @@ function makeTaskElement(task) {
       task.text = nextText;
       text.textContent = nextText;
       checkbox.setAttribute("aria-label", `Finish ${nextText}`);
+      text.setAttribute("aria-label", `Edit ${nextText}`);
     } catch (error) {
       task.text = previousText;
       text.textContent = previousText;
