@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#18191a" />
+    <title>Focus Zen</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <main class="page" id="page" aria-label="Follow-ups">
+      <ul class="tasks" id="tasks"></ul>
+
+      <div class="draft-row">
+        <span class="box" aria-hidden="true"></span>
+        <div
+          class="draft"
+          id="draft"
+          contenteditable="plaintext-only"
+          role="textbox"
+          aria-label="New follow-up"
+          spellcheck="true"
+        ></div>
+      </div>
+
+      <p class="sr-only" id="announcer" aria-live="polite"></p>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
+
