@@ -29,6 +29,8 @@
   "bundle": {
     "active": true,
     "category": "Productivity",
+    "copyright": "Copyright © 2026 Aimable Dusingizimana",
+    "license": "MIT",
     "shortDescription": "A quiet local follow-up list",
     "targets": "all",
     "macOS": {

@@ -2,6 +2,16 @@
   "name": "focus-zen",
   "private": true,
   "version": "0.1.0",
+  "description": "A quiet desktop checklist for follow-ups, built with Tauri and SQLite",
+  "license": "MIT",
+  "author": "Aimable Dusingizimana",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adusingi/focus-zen.git"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
