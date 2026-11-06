@@ -1,0 +1,101 @@
+name: Release
+
+# Push a tag such as v0.1.0 to build the universal macOS .dmg and publish it
+# as a GitHub Release. Run it by hand (workflow_dispatch) to build the .dmg as
+# a workflow artifact only, without publishing anything.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  macos:
+    name: macOS universal .dmg
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read app version
+        id: version
+        run: |
+          app="$(jq -r .version src-tauri/tauri.conf.json)"
+          npm="$(jq -r .version package.json)"
+          cargo="$(sed -n 's/^version = "\(.*\)"$/\1/p' src-tauri/Cargo.toml | head -1)"
+          if [ "$app" != "$npm" ] || [ "$app" != "$cargo" ]; then
+            echo "::error::Versions differ: tauri.conf.json=$app package.json=$npm Cargo.toml=$cargo"
+            exit 1
+          fi
+          if [ "$GITHUB_REF_TYPE" = "tag" ] && [ "$GITHUB_REF_NAME" != "v$app" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match the app version v$app"
+            exit 1
+          fi
+          echo "value=$app" >> "$GITHUB_OUTPUT"
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm tauri build --target universal-apple-darwin --bundles dmg
+
+      - name: Name and verify the .dmg
+        id: dmg
+        run: |
+          cd src-tauri/target/universal-apple-darwin/release/bundle/dmg
+          built=(*.dmg)
+          name="Focus-Zen_${{ steps.version.outputs.value }}_universal.dmg"
+          mv "${built[0]}" "$name"
+
+          mount="$(mktemp -d)"
+          hdiutil attach -nobrowse -readonly -mountpoint "$mount" "$name"
+          app="$mount/Focus Zen.app"
+          lipo "$app/Contents/MacOS/focus-zen" -verify_arch arm64 x86_64
+          codesign --verify --deep --strict "$app"
+          test -L "$mount/Applications"
+          hdiutil detach "$mount"
+
+          shasum -a 256 "$name" > "$name.sha256"
+          echo "dir=$PWD" >> "$GITHUB_OUTPUT"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.dmg.outputs.name }}
+          path: |
+            ${{ steps.dmg.outputs.dir }}/${{ steps.dmg.outputs.name }}
+            ${{ steps.dmg.outputs.dir }}/${{ steps.dmg.outputs.name }}.sha256
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: ${{ steps.dmg.outputs.dir }}
+        run: |
+          name="${{ steps.dmg.outputs.name }}"
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$name" "$name.sha256" --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$name" "$name.sha256" \
+              --repo "$GITHUB_REPOSITORY" \
+              --verify-tag \
+              --title "Focus Zen ${{ steps.version.outputs.value }}" \
+              --notes-file "$GITHUB_WORKSPACE/.github/release-notes.md" \
+              --generate-notes
+          fi

@@ -9,6 +9,17 @@ Built with [Tauri 2](https://tauri.app) and Rust. Items are stored locally in SQ
 
 ![Focus Zen with four open follow-ups](docs/screenshot.png)
 
+## Download
+
+Get the `.dmg` from the [latest release](https://github.com/adusingi/focus-zen/releases/latest). It runs on Apple Silicon and Intel Macs with macOS 12 or later.
+
+1. Open the `.dmg` and drag **Focus Zen** into **Applications**.
+2. Open Focus Zen. The app is not notarized by Apple, so macOS blocks the first launch:
+   - **macOS 15 or later:** click **Done**, open **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
+   - **macOS 14 or earlier:** right-click the app, choose **Open**, then click **Open**.
+
+You can also clear the block in Terminal: `xattr -dr com.apple.quarantine "/Applications/Focus Zen.app"`
+
 ## Use it
 
 | Action | How |
@@ -50,7 +61,19 @@ pnpm tauri build
 
 The app and its installer are written to `src-tauri/target/release/bundle/`. On a Mac you get `Focus Zen.app` and a `.dmg`.
 
-The macOS build is signed ad hoc and is not notarized. It opens normally on the Mac that built it. On another Mac, Gatekeeper blocks the first launch: right-click the app, choose **Open**, then confirm.
+The macOS build is signed ad hoc and is not notarized. It opens normally on the Mac that built it. On another Mac, Gatekeeper blocks the first launch; see [Download](#download) for how to open it.
+
+## Release
+
+1. Set the same new version in `package.json`, `src-tauri/Cargo.toml`, and `src-tauri/tauri.conf.json`, then commit.
+2. Tag that commit and push the tag:
+
+   ```sh
+   git tag v0.2.0
+   git push origin v0.2.0
+   ```
+
+The [Release workflow](.github/workflows/release.yml) builds a universal `.dmg` (Apple Silicon and Intel), checks it, and publishes it with a SHA-256 checksum as a GitHub Release. It stops if the tag and the three versions do not match.
 
 ## Where your data lives
 
