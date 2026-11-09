@@ -1,7 +1,7 @@
 {
   "name": "focus-zen",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A quiet desktop checklist for follow-ups, built with Tauri and SQLite",
   "license": "MIT",
   "author": "Aimable Dusingizimana",
