@@ -1,6 +1,7 @@
 /* The hero: an ink band with the headline and the Buy button, then a large laptop
    that shows the app, half on the band and half on the white page.
-   Chosen from three variants on branch prototype/hero (039a0db). */
+   Chosen from three prototype variants: laptop left on ink, this centred stage, and a
+   paper band. */
 
 /* ---------- Ink band: the theme tokens swap inside it ----------
    Used by the hero and the closing band. .mo-btn-primary becomes a paper pill and
