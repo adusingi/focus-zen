@@ -1,0 +1,103 @@
+/* The page buyers land on after Stripe: one download, then three install steps. */
+
+.lp-thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 72px;
+  text-align: center;
+}
+
+.lp-thanks-icon {
+  width: 112px;
+  height: 112px;
+  margin-bottom: var(--mo-space-2xl);
+}
+
+.lp-thanks h1 {
+  margin: 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lp-thanks .lp-lede {
+  margin-bottom: var(--mo-space-2xl);
+  text-wrap: balance;
+}
+
+/* Install steps: a recessed paper panel, left-aligned for reading. */
+
+.lp-steps {
+  width: min(100%, 620px);
+  margin-top: 96px;
+  padding: var(--mo-space-2xl);
+  border-radius: var(--mo-radius-lg);
+  background: var(--panel-soft);
+  text-align: left;
+}
+
+.lp-steps h2 {
+  margin: 0 0 var(--mo-space-xl);
+  font: var(--mo-text-h2);
+}
+
+.lp-steps ol {
+  display: grid;
+  gap: var(--mo-space-lg);
+  margin: 0;
+  padding-left: 1.4em;
+  color: var(--foreground);
+  font: var(--mo-text-body);
+}
+
+.lp-steps ol ul {
+  display: grid;
+  gap: var(--mo-space-sm);
+  margin: var(--mo-space-md) 0 0;
+  padding-left: 1.1em;
+  color: var(--muted);
+}
+
+.lp-steps code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--panel);
+  font-family: var(--mo-font-mono);
+  font-size: 0.9em;
+}
+
+.lp-steps-note {
+  margin: var(--mo-space-xl) 0 0;
+  padding-top: var(--mo-space-lg);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: var(--mo-text-body);
+  font-size: 0.9375rem;
+}
+
+/* On white the signature line uses --muted (7.4:1), not the 50 % paper of the ink band. */
+.lp-thanks-foot {
+  padding-top: 96px;
+  padding-bottom: var(--mo-space-3xl);
+  text-align: center;
+}
+
+.lp-thanks-foot .lp-legal {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 560px) {
+  .lp-thanks {
+    padding-top: var(--mo-space-3xl);
+  }
+
+  .lp-steps {
+    margin-top: 72px;
+    padding: var(--mo-space-xl);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  // The Focus Zen landing page at focus.mobayilo.com: a Worker that only serves
+  // static assets (no script). Build first: `pnpm site:build` writes site/dist.
+  "name": "focus-zen-site",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // /thanks serves thanks.html; /thanks.html redirects to /thanks.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // Only the custom domain; no public *.workers.dev copy of the site.
+  "workers_dev": false,
+  "routes": [{ "pattern": "focus.mobayilo.com", "custom_domain": true }]
+}

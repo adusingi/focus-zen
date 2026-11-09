@@ -1,0 +1,102 @@
+/* The Privacy band: the icon's warm paper (panel-soft) across the
+   white page, with a card that shows where the list lives on disk. */
+
+.lp-privacy {
+  margin-top: 128px;
+  padding: 112px 0;
+  background: var(--panel-soft);
+}
+
+.lp-privacy-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  align-items: center;
+  gap: var(--mo-space-4xl);
+}
+
+.lp-privacy-text {
+  max-width: 46ch;
+  margin: var(--mo-space-2xl) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-body-lg);
+  text-wrap: balance;
+}
+
+/* The file card */
+
+.lp-file {
+  margin: 0;
+  padding: var(--mo-space-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--mo-radius-lg);
+  background: var(--panel);
+  box-shadow: var(--card-shadow);
+}
+
+.lp-file-head {
+  display: flex;
+  align-items: center;
+  gap: var(--mo-space-md);
+  font-family: var(--mo-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lp-file-head .line-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.lp-file code {
+  display: block;
+  margin: var(--mo-space-lg) 0 0;
+  padding: var(--mo-space-md) var(--mo-space-lg);
+  border-radius: var(--mo-radius-sm);
+  background: var(--panel-soft);
+  color: var(--foreground);
+  font: 500 0.875rem/1.6 var(--mo-font-mono);
+}
+
+/* A path breaks only after a slash (the <wbr>s), never inside a name. */
+.lp-file code span {
+  white-space: nowrap;
+}
+
+.lp-checks {
+  display: grid;
+  gap: var(--mo-space-sm);
+  margin: var(--mo-space-xl) 0 0;
+  padding: 0;
+  list-style: none;
+  font: var(--mo-text-body);
+  font-size: 0.9375rem;
+}
+
+.lp-checks li {
+  display: flex;
+  align-items: center;
+  gap: var(--mo-space-md);
+}
+
+.lp-checks svg {
+  flex: none;
+}
+
+@media (max-width: 1080px) {
+  .lp-privacy-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-file {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 560px) {
+  .lp-privacy {
+    margin-top: 96px;
+    padding: 80px 0;
+  }
+}

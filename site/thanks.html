@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="focus-zen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank you — Focus Zen</title>
+    <!-- Buyers land here from Stripe; it is not a page to find in search. -->
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" href="./src/assets/icon-256.png" />
+    <link rel="apple-touch-icon" href="./src/assets/icon-256.png" />
+
+    <link rel="preload" href="./src/fonts/inconsolata-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./src/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./src/fonts.css" />
+    <link rel="stylesheet" href="./src/design-system.css" />
+    <link rel="stylesheet" href="./src/landing.css" />
+    <link rel="stylesheet" href="./src/thanks.css" />
+  </head>
+  <body>
+    <header class="lp-top mo-container">
+      <a class="lp-brand" href="/">
+        <img src="./src/assets/icon-256.png" alt="" width="36" height="36" />
+        <span>Focus Zen</span>
+      </a>
+    </header>
+
+    <main class="lp-thanks mo-container">
+      <img class="lp-thanks-icon" src="./src/assets/icon-512.png" alt="" width="112" height="112" />
+      <p class="lp-kicker">Thank you</p>
+      <h1>Your list is <em>waiting.</em></h1>
+      <p class="lp-lede">Your payment went through. Download Focus Zen, and give your head a rest.</p>
+
+      <a
+        class="mo-btn mo-btn-lg mo-btn-primary"
+        href="https://github.com/adusingi/focus-zen/releases/download/v0.2.2/Focus-Zen_0.2.2_universal.dmg"
+        >Download for Mac (.dmg)</a
+      >
+      <ul class="lp-meta lp-meta-list">
+        <li>Version 0.2.2</li>
+        <li>9.7 MB</li>
+        <li>macOS 12 or later</li>
+        <li>Apple Silicon and Intel</li>
+      </ul>
+
+      <section class="lp-steps" aria-labelledby="steps-title">
+        <h2 id="steps-title">Install in three steps</h2>
+        <ol>
+          <li>Open the <code>.dmg</code> and drag <strong>Focus Zen</strong> into <strong>Applications</strong>.</li>
+          <li>
+            Open Focus Zen. The app is not notarized by Apple, so macOS blocks the first launch:
+            <ul>
+              <li>
+                <strong>macOS 15 or later:</strong> click <strong>Done</strong>, open
+                <strong>System Settings → Privacy &amp; Security</strong>, scroll down, and click
+                <strong>Open Anyway</strong>.
+              </li>
+              <li>
+                <strong>macOS 14 or earlier:</strong> right-click the app, choose <strong>Open</strong>, then
+                click <strong>Open</strong>.
+              </li>
+            </ul>
+          </li>
+          <li>Type your first line, and press Enter.</li>
+        </ol>
+        <p class="lp-steps-note">
+          If you chose “Yes” at checkout, we email you when a new version is out. Your receipt from Stripe is
+          in your inbox.
+        </p>
+      </section>
+    </main>
+
+    <footer class="lp-thanks-foot mo-container">
+      <p class="lp-legal">
+        <span>© 2026 Focus Zen · Mobayilo – Japan</span>
+        <span><span class="lp-jp" lang="ja">心を込めて作る</span> — built with love, for human happiness.</span>
+      </p>
+    </footer>
+  </body>
+</html>

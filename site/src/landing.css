@@ -1,0 +1,349 @@
+/* Focus Zen sales page, on @mobayilo/design-system tokens.
+   Patterns follow the design-system site: mono kickers, Cormorant headings with an
+   italic emphasis, sections separated by whitespace and scale (no border-top). */
+
+.lp-kicker {
+  margin: 0 0 var(--mo-space-lg);
+  color: var(--accent);
+  font-family: var(--mo-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lp-meta {
+  margin: var(--mo-space-lg) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-caption);
+}
+
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Design-system gap: .mo-btn assumes <button>; links styled as buttons need this.
+   (Fixed in the design system on feat/focus-zen-theme.) */
+a.mo-btn {
+  text-decoration: none;
+}
+
+
+/* ---------- Top bar ---------- */
+
+.lp-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--mo-space-xl);
+  padding-bottom: var(--mo-space-xl);
+}
+
+.lp-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--mo-space-md);
+  font: italic 600 1.375rem/1 var(--mo-font-heading);
+  text-decoration: none;
+}
+
+.lp-brand img {
+  width: 36px;
+  height: 36px;
+}
+
+/* ---------- Hero ---------- */
+
+/* The window keeps its native 620 px but sits in a 540 px column, so it runs past
+   the container into the page margin (the reference's bleed) and the headline
+   gets room for two lines. main clips it on narrower desktops. */
+main {
+  overflow-x: clip;
+}
+
+.lp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 540px;
+  align-items: center;
+  gap: var(--mo-space-4xl);
+  padding-top: 72px;
+}
+
+.lp-hero .mac-window {
+  max-width: none;
+}
+
+.lp-hero h1 {
+  margin: 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(3.25rem, 6.4vw, 5.75rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lp-lede {
+  max-width: 44ch;
+  margin: var(--mo-space-2xl) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-body-lg);
+}
+
+.lp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mo-space-md);
+  margin-top: var(--mo-space-2xl);
+}
+
+/* ---------- Sections ---------- */
+
+.lp-section {
+  padding-top: 128px;
+}
+
+.lp-section-header {
+  margin-bottom: var(--mo-space-3xl);
+}
+
+.lp-section-title {
+  margin: 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Steps: picture and text, alternating sides. The picture column is the width of
+   the widest screenshot at its native size (620 px = 1240 px at 2x), so every
+   picture stays sharp and every text block lines up with a page edge. */
+
+.lp-step {
+  --lp-media: 620px;
+
+  display: grid;
+  grid-template-columns: var(--lp-media) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--mo-space-4xl);
+  padding: var(--mo-space-3xl) 0;
+}
+
+.lp-step.is-flipped {
+  grid-template-columns: minmax(0, 1fr) var(--lp-media);
+}
+
+.lp-step.is-flipped .lp-step-media {
+  order: 2;
+}
+
+/* Pictures sit flush with the outer page edge, whichever side they are on. */
+.lp-step-media {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.lp-step.is-flipped .lp-step-media {
+  justify-content: flex-end;
+}
+
+.lp-step-text {
+  max-width: 40ch;
+}
+
+.lp-step-text .line-icon {
+  margin-bottom: var(--mo-space-xl);
+}
+
+.lp-step h3 {
+  margin: 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.lp-step-text > p:last-child {
+  margin: var(--mo-space-lg) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-body);
+}
+
+/* Principles */
+
+.lp-principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--mo-space-2xl);
+}
+
+.lp-principle {
+  padding: var(--mo-space-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--mo-radius-lg);
+  background: var(--panel);
+}
+
+.lp-principle h3 {
+  margin: var(--mo-space-xl) 0 0;
+  font: var(--mo-text-h3);
+}
+
+.lp-principle p {
+  margin: var(--mo-space-sm) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-body);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Closing band: ink, like the app window ----------
+   The band swaps the theme tokens, so .mo-btn-primary turns into a paper button. */
+
+.lp-end {
+  --background: #171717;
+  --foreground: #f4f0ea;
+  --muted: #b5aea4;
+  --accent: #f4f0ea;
+
+  margin-top: 160px;
+  padding: 128px 0 var(--mo-space-3xl);
+  color: var(--foreground);
+  background: var(--background);
+  text-align: center;
+}
+
+.lp-end .mo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lp-end img {
+  width: 88px;
+  height: 88px;
+}
+
+.lp-end h2 {
+  margin: var(--mo-space-xl) 0 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* One line with separators on wide screens; one item per line on phones, so a
+   wrapped line never starts with a separator. */
+.lp-meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.lp-meta-list li + li::before {
+  margin: 0 0.6em;
+  content: "·";
+}
+
+@media (max-width: 560px) {
+  .lp-meta-list {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lp-meta-list li + li::before {
+    content: none;
+  }
+}
+
+.lp-end-text {
+  max-width: 46ch;
+  margin: var(--mo-space-lg) 0 var(--mo-space-2xl);
+  color: var(--muted);
+  font: var(--mo-text-body);
+  text-wrap: balance;
+}
+
+/* The signature line used on adusingi-web and clarity-board. Paper at 50 % on
+   the ink band (4.7:1, AA), the quiet end of the page. */
+.lp-legal {
+  margin: 96px 0 0;
+  color: color-mix(in srgb, var(--foreground) 50%, transparent);
+  font: var(--mo-text-caption);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+/* Copyright on one line, the signature on the next. */
+.lp-legal > span {
+  display: block;
+  text-wrap: balance;
+}
+
+/* Same as .font-jp on adusingi-web. Japanese can break between any two
+   characters, so keep the phrase whole. */
+.lp-jp {
+  font-family: "Noto Serif JP", serif;
+  white-space: nowrap;
+}
+
+/* ---------- Narrow screens ---------- */
+
+@media (max-width: 1080px) {
+  .lp-hero,
+  .lp-step,
+  .lp-step.is-flipped {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-step.is-flipped .lp-step-media {
+    order: 0;
+  }
+
+  .lp-hero-media,
+  .lp-step-media,
+  .lp-step.is-flipped .lp-step-media {
+    justify-content: flex-start;
+  }
+
+  .menubar-scene {
+    width: min(100%, 560px);
+  }
+
+  .lp-hero .mac-window {
+    max-width: 100%;
+  }
+
+  .lp-step-text {
+    max-width: 52ch;
+  }
+
+  .lp-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .lp-hero {
+    padding-top: var(--mo-space-3xl);
+  }
+
+  .lp-section {
+    padding-top: 96px;
+  }
+
+  .lp-principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-top .mo-btn {
+    display: none;
+  }
+}

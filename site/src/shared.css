@@ -1,0 +1,152 @@
+/* Pictures of the app: a macOS window around a real screenshot, and the
+   macOS menu bar. They depict macOS, so they use the system font, not the page font. */
+
+:root {
+  /* The app window (src/styles.css). */
+  --app-bg: #18191a;
+  --system-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+/* macOS window around a real screenshot */
+
+.mac-window {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--app-bg);
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 55%),
+    0 0 0 1px rgb(255 255 255 / 10%) inset,
+    0 24px 60px -12px rgb(60 45 25 / 35%),
+    0 8px 18px -6px rgb(60 45 25 / 22%);
+}
+
+.mac-titlebar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  background: #2a2b2d;
+  border-bottom: 1px solid #0c0c0d;
+}
+
+.mac-lights {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.mac-lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 0 0 0 0.5px rgb(0 0 0 / 30%) inset;
+}
+
+.mac-lights i:nth-child(2) {
+  background: #febc2e;
+}
+
+.mac-lights i:nth-child(3) {
+  background: #28c840;
+}
+
+.mac-title {
+  color: rgb(255 255 255 / 55%);
+  font: 600 13px/1 var(--system-font);
+}
+
+/* Menu bar scene */
+
+.menubar-scene {
+  position: relative;
+  width: min(100%, 560px);
+  height: 300px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 90% at 80% 0%, #f7efe2 0%, transparent 60%),
+    linear-gradient(160deg, #d9cbb6 0%, #c8b8a3 45%, #a99a88 100%);
+  box-shadow: 0 0 0 1px rgb(23 23 23 / 8%), 0 24px 60px -24px rgb(60 45 25 / 35%);
+}
+
+.menubar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px;
+  color: #1d1d1f;
+  background: rgb(255 255 255 / 55%);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  font: 500 13px/1 var(--system-font);
+}
+
+.menubar-item {
+  position: relative;
+  display: grid;
+  height: 22px;
+  min-width: 28px;
+  padding: 0 5px;
+  place-items: center;
+  border-radius: 5px;
+}
+
+.menubar-item.is-open {
+  background: rgb(0 0 0 / 12%);
+}
+
+.menubar-item img {
+  width: 18px;
+  height: 18px;
+}
+
+.menubar-clock {
+  padding-left: 6px;
+}
+
+/* The menu hangs from the left edge of its menu bar item, as on macOS. */
+.menu {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  width: 196px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(246 246 246 / 92%);
+  box-shadow: 0 0 0 0.5px rgb(0 0 0 / 22%), 0 12px 32px rgb(0 0 0 / 22%);
+  font: 400 13px/1 var(--system-font);
+  color: #1d1d1f;
+  text-align: left;
+}
+
+.menu-item {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.menu-item:first-child {
+  color: #fff;
+  background: #3b82f6;
+}
+
+.menu-separator {
+  display: block;
+  height: 1px;
+  margin: 5px 10px;
+  background: rgb(0 0 0 / 12%);
+}
+
+.line-icon {
+  display: block;
+  color: var(--foreground);
+}

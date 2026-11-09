@@ -1,0 +1,162 @@
+/* @mobayilo/design-system, copied (the packages are not published yet).
+   Source: ~/Documents/Code/p/design-system @ e9db3d5
+   - Theme block: the "focus-zen" light theme, also added to themes/src/themes.ts
+     (design-system branch feat/focus-zen-theme). Keep the two in step.
+   - :root scales and .mo-btn: verbatim from ui/styles.css.
+   - Base (body, :focus-visible, .mo-container): from site/app/globals.css.
+   When the packages are published, depend on @mobayilo/themes + @mobayilo/ui instead. */
+
+/* White page (asked 2026-11-09). The icon's warm paper (#f4f0ea) moves to
+   panel-soft, the recessed surface; ink and muted stay as they were. */
+html[data-theme="focus-zen"] {
+  --background: #ffffff;
+  --background-rgb: 255 255 255;
+  --panel: #ffffff;
+  --panel-soft: #f4f0ea;
+  --line: #e6e0d6;
+  --line-strong: #171717;
+  --foreground: #171717;
+  --muted: #57534e;
+  --muted-soft: #8a847c;
+  --accent: #171717;
+  --accent-strong: #000000;
+  --accent-wash: rgba(23, 23, 23, 0.08);
+  --chip-background: #f4f0ea;
+  --chip-foreground: #171717;
+  --card-shadow: 0 12px 32px rgba(60, 45, 25, 0.12);
+  --page-gradient: none;
+}
+
+:root {
+  /* Spacing (4px base) */
+  --mo-space-xs: 4px;
+  --mo-space-sm: 8px;
+  --mo-space-md: 12px;
+  --mo-space-lg: 16px;
+  --mo-space-xl: 24px;
+  --mo-space-2xl: 32px;
+  --mo-space-3xl: 48px;
+  --mo-space-4xl: 64px;
+
+  /* Radius */
+  --mo-radius-sm: 8px;
+  --mo-radius-md: 16px;
+  --mo-radius-lg: 24px;
+  --mo-radius-full: 9999px;
+
+  /* Elevation */
+  --mo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --mo-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --mo-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.24);
+
+  /* Type: Cormorant Garamond for display/headings, Inconsolata for everything else. */
+  --mo-font-heading: "Cormorant Garamond", Georgia, serif;
+  --mo-font-sans: "Inconsolata", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --mo-font-mono: "Inconsolata", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --mo-text-display: 700 3.5rem/1.05 var(--mo-font-heading);
+  --mo-text-h1: 700 2.5rem/1.15 var(--mo-font-heading);
+  --mo-text-h2: 600 2rem/1.2 var(--mo-font-heading);
+  --mo-text-h3: 600 1.375rem/1.35 var(--mo-font-heading);
+  --mo-text-body-lg: 400 1.125rem/1.55 var(--mo-font-sans);
+  --mo-text-body: 400 1rem/1.6 var(--mo-font-sans);
+  --mo-text-caption: 500 0.8125rem/1.4 var(--mo-font-sans);
+}
+
+/* ---------- Base ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  background: var(--background);
+  background-image: var(--page-gradient);
+  color: var(--foreground);
+  font-family: var(--mo-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.mo-container {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 0 var(--mo-space-xl);
+}
+
+/* ---------- Button ---------- */
+.mo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mo-space-sm);
+  border: 1px solid transparent;
+  border-radius: var(--mo-radius-full);
+  font-family: var(--mo-font-sans);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 140ms ease, border-color 140ms ease, opacity 140ms ease;
+}
+.mo-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.mo-btn-sm {
+  height: 34px;
+  padding: 0 var(--mo-space-lg);
+  font-size: 0.8125rem;
+}
+.mo-btn-md {
+  height: 44px;
+  padding: 0 var(--mo-space-xl);
+  font-size: 0.875rem;
+}
+.mo-btn-lg {
+  height: 52px;
+  padding: 0 var(--mo-space-2xl);
+  font-size: 0.9375rem;
+}
+.mo-btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+}
+.mo-btn-primary:not(:disabled):hover {
+  opacity: 0.88;
+}
+.mo-btn-outline {
+  background: var(--panel);
+  color: var(--foreground);
+  border-color: var(--line);
+}
+.mo-btn-outline:not(:disabled):hover {
+  border-color: var(--line-strong);
+}

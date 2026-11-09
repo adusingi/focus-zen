@@ -1,0 +1,8 @@
+# pnpm 11 treats an *ignored* build script as fatal in its pre-run deps check,
+# so every detected build must get an explicit true/false here.
+allowBuilds:
+  # esbuild ships a platform binary; wrangler uses it to bundle Workers.
+  esbuild: true
+  # workerd is wrangler's local Workers runtime (needed for `wrangler dev`;
+  # deploying the static site works without it, but approve it so installs are quiet).
+  workerd: true

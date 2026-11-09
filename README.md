@@ -108,7 +108,25 @@ src/lib/                 Shared code: the database repository and the History da
 src-tauri/src/           Rust app: windows, menu bar icon, macOS app menu, database location
 src-tauri/migrations/    SQL migrations, applied on start
 src-tauri/capabilities/  Permissions per window (only the list window can write)
+site/                    The website at focus.mobayilo.com (see Website)
 ```
+
+## Website
+
+The landing page at <https://focus.mobayilo.com> lives in `site/`: plain HTML and CSS on the Mobayilo design system (the `focus-zen` theme), with self-hosted fonts and no JavaScript. Vite fingerprints the assets, and Cloudflare serves the result as a static-assets Worker on the custom domain.
+
+| Page | Purpose |
+| --- | --- |
+| `site/index.html` | The sales page. Every **Buy** button opens the Stripe payment link. |
+| `site/thanks.html` | Where Stripe sends buyers after payment (`/thanks`): the download and the install steps. |
+| `site/404.html` | Shown for any unknown address. |
+
+```sh
+pnpm site:dev      # http://127.0.0.1:1430
+pnpm site:deploy   # build site/dist, then deploy to focus.mobayilo.com (needs `pnpm exec wrangler login`)
+```
+
+The download link on `site/thanks.html` names the release (`v0.2.2`). Update it with each release.
 
 ## Contributing
 
