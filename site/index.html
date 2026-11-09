@@ -26,53 +26,79 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preload" href="./src/fonts/inconsolata-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./src/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./src/fonts.css" />
-    <link rel="stylesheet" href="./src/design-system.css" />
-    <link rel="stylesheet" href="./src/shared.css" />
-    <link rel="stylesheet" href="./src/landing.css" />
-    <link rel="stylesheet" href="./src/landing-privacy.css" />
+    <link
+      rel="preload"
+      href="./src/fonts/cormorant-garamond-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./src/index.page.css" />
   </head>
   <body>
-    <header class="lp-top mo-container">
-      <a class="lp-brand" href="/">
-        <img src="./src/assets/icon-256.png" alt="" width="36" height="36" />
-        <span>Focus Zen</span>
-      </a>
-      <a class="mo-btn mo-btn-sm mo-btn-outline" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403">Buy · $5</a>
-    </header>
+    <section class="lp-hero lp-ink">
+      <header class="lp-hero-top mo-container">
+        <a class="lp-brand" href="/">
+          <img src="./src/assets/icon-256.png" alt="" width="36" height="36" />
+          <span>Focus Zen</span>
+        </a>
+        <a
+          class="mo-btn mo-btn-primary lp-buy lp-buy-sm"
+          href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+          ><span>Buy for Mac</span><span class="lp-buy-price">$5</span></a
+        >
+      </header>
+      <div class="lp-hero-text">
+        <p class="lp-kicker">A simple to-do list for Mac</p>
+        <h1>One list.<br /><em>Nothing else.</em></h1>
+        <p class="lp-hero-lede">Write it down. Check it off. Move on.</p>
+        <div class="lp-actions">
+          <a class="mo-btn mo-btn-primary lp-buy" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+            ><span>Buy for Mac</span><span class="lp-buy-price">$5</span></a
+          >
+          <a class="lp-how" href="#how">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+        <ul class="lp-hero-meta lp-meta-list">
+          <li>One-time payment</li>
+          <li>macOS 12 or later</li>
+          <li>Apple Silicon and Intel</li>
+        </ul>
+      </div>
+      <div class="lp-hero-media">
+        <figure class="mac-laptop" aria-label="Focus Zen open on a MacBook">
+          <div class="mac-laptop-lid">
+            <div class="mac-laptop-screen">
+              <div class="mac-laptop-menubar" aria-hidden="true">
+                <span class="mac-laptop-app">Focus Zen</span><span>Edit</span><span>Window</span
+                ><span>Help</span>
+                <span class="mac-laptop-status"
+                  ><img src="./src/assets/tray.png" alt="" width="14" height="14" /><span
+                    >Mon 9 Nov&nbsp;&nbsp;9:41</span
+                  ></span
+                >
+              </div>
+              <div class="mac-laptop-window">
+                <figure class="mac-window">
+                  <div class="mac-titlebar" aria-hidden="true">
+                    <span class="mac-lights"><i></i><i></i><i></i></span>
+                    <span class="mac-title">Focus Zen</span>
+                  </div>
+                  <img
+                    src="./src/assets/list.png"
+                    alt="The Focus Zen window with four open follow-ups"
+                    width="620"
+                    height="420"
+                  />
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="mac-laptop-base" aria-hidden="true"></div>
+        </figure>
+      </div>
+    </section>
 
     <main>
-      <section class="lp-hero mo-container">
-        <div class="lp-hero-text">
-          <p class="lp-kicker">A quiet checklist for Mac</p>
-          <h1>One list.<br /><em>Nothing else.</em></h1>
-          <p class="lp-lede">
-            Focus Zen keeps the things you must not forget, and nothing more. Type a line, press Enter, tick it
-            off when it is done. No projects, no tags, no due dates.
-          </p>
-          <div class="lp-actions">
-            <a class="mo-btn mo-btn-lg mo-btn-primary" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403">Buy for Mac · $5</a>
-            <a class="mo-btn mo-btn-lg mo-btn-outline" href="#how">See how it works</a>
-          </div>
-          <p class="lp-meta">One-time payment<br />macOS 12 or later · Apple Silicon and Intel</p>
-        </div>
-        <div class="lp-hero-media">
-          <figure class="mac-window">
-            <div class="mac-titlebar" aria-hidden="true">
-              <span class="mac-lights"><i></i><i></i><i></i></span>
-              <span class="mac-title">Focus Zen</span>
-            </div>
-            <img
-              src="./src/assets/list.png"
-              alt="The Focus Zen window with four open follow-ups"
-              width="620"
-              height="420"
-            />
-          </figure>
-        </div>
-      </section>
-
       <section class="lp-section mo-container" id="how">
         <header class="lp-section-header">
           <p class="lp-kicker">How it works</p>
@@ -114,8 +140,8 @@
             <p class="lp-kicker">Write</p>
             <h3>Type. Enter. <em>Done.</em></h3>
             <p>
-              Write a follow-up on the empty line and press Enter. Click a line to change it. Tick the box when it
-              is done, and it leaves the list.
+              Write a follow-up on the empty line and press Enter. Click a line to change it. Tick the box
+              when it is done, and it leaves the list.
             </p>
           </div>
         </article>
@@ -153,7 +179,9 @@
             </svg>
             <p class="lp-kicker">Look back</p>
             <h3>Nothing is <em>lost.</em></h3>
-            <p>Finished items wait in Settings → History, grouped by the day you finished them, newest first.</p>
+            <p>
+              Finished items wait in Settings → History, grouped by the day you finished them, newest first.
+            </p>
           </div>
         </article>
         <article class="lp-step">
@@ -220,8 +248,8 @@
             <p class="lp-kicker">Step away</p>
             <h3>Out of <em>the way.</em></h3>
             <p>
-              Close the window and Focus Zen keeps running in the menu bar, with no Dock icon. One click brings
-              your list back.
+              Close the window and Focus Zen keeps running in the menu bar, with no Dock icon. One click
+              brings your list back.
             </p>
           </div>
         </article>
@@ -233,8 +261,8 @@
             <p class="lp-kicker">Privacy</p>
             <h2 class="lp-section-title" id="privacy-title">Your list never <em>leaves your Mac.</em></h2>
             <p class="lp-privacy-text">
-              Focus Zen has no account, no cloud and no tracking, and it never connects to the internet. What you
-              write is kept in one small file on your Mac. Nobody else sees it, not even us.
+              Focus Zen has no account, no cloud and no tracking, and it never connects to the internet. What
+              you write is kept in one small file on your Mac. Nobody else sees it, not even us.
             </p>
           </div>
           <figure class="lp-file">
@@ -257,9 +285,8 @@
               ><span>Where your list lives</span>
             </figcaption>
             <code
-              ><span>~/Library/Application Support/</span><wbr /><span>com.focuszen.desktop/</span><wbr /><span
-                >focus-zen.db</span
-              ></code
+              ><span>~/Library/Application Support/</span><wbr /><span>com.focuszen.desktop/</span
+              ><wbr /><span>focus-zen.db</span></code
             >
             <ul class="lp-checks">
               <li>
@@ -419,12 +446,14 @@
       </section>
     </main>
 
-    <footer class="lp-end" id="buy">
+    <footer class="lp-end lp-ink" id="buy">
       <div class="mo-container">
         <img src="./src/assets/icon-256.png" alt="" width="88" height="88" />
         <h2>Clear your head <em>for $5.</em></h2>
         <p class="lp-end-text">Your list stays on your Mac. No account, no sync, no network access.</p>
-        <a class="mo-btn mo-btn-lg mo-btn-primary" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403">Buy for Mac · $5</a>
+        <a class="mo-btn mo-btn-primary lp-buy" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+          ><span>Buy for Mac</span><span class="lp-buy-price">$5</span></a
+        >
         <ul class="lp-meta lp-meta-list">
           <li>One-time payment</li>
           <li>macOS 12 or later</li>
@@ -433,7 +462,9 @@
         </ul>
         <p class="lp-legal">
           <span>© 2026 Focus Zen · Mobayilo – Japan</span>
-          <span><span class="lp-jp" lang="ja">心を込めて作る</span> — built with love, for human happiness.</span>
+          <span
+            ><span class="lp-jp" lang="ja">心を込めて作る</span> — built with love, for human happiness.</span
+          >
         </p>
       </div>
     </footer>

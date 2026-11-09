@@ -1,0 +1,9 @@
+/* The home page's stylesheet: one entry, so the cascade order is exactly this order.
+   (With one <link> per file, Vite moved the CSS shared with /thanks into a chunk that
+   loaded after hero.css, and design-system rules won over the page's own rules.) */
+@import "./fonts.css";
+@import "./design-system.css";
+@import "./shared.css";
+@import "./landing.css";
+@import "./landing-privacy.css";
+@import "./hero.css";

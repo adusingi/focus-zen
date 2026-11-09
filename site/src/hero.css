@@ -1,0 +1,173 @@
+/* The hero: an ink band with the headline and the Buy button, then a large laptop
+   that shows the app, half on the band and half on the white page.
+   Chosen from three variants on branch prototype/hero (039a0db). */
+
+/* ---------- Ink band: the theme tokens swap inside it ----------
+   Used by the hero and the closing band. .mo-btn-primary becomes a paper pill and
+   the muted text stays bright (11:1). */
+
+.lp-ink {
+  --background: #171717;
+  --foreground: #f4f0ea;
+  --muted: #cfc9bf;
+  --accent: #f4f0ea;
+  --panel: transparent;
+  --line: rgb(244 240 234 / 34%);
+  --line-strong: #f4f0ea;
+
+  color: var(--foreground);
+}
+
+/* ---------- The hero band ----------
+   The ink stops --lp-hero-overlap above the section's end, so the laptop sits half
+   on the band and half on the white page. */
+
+.lp-hero {
+  --lp-hero-overlap: 300px;
+
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.lp-hero::before {
+  position: absolute;
+  inset: 0 0 var(--lp-hero-overlap) 0;
+  z-index: -1;
+  background: var(--background);
+  content: "";
+}
+
+.lp-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--mo-space-xl);
+  padding-bottom: var(--mo-space-xl);
+}
+
+.lp-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 0;
+  text-align: center;
+}
+
+.lp-hero-text h1 {
+  margin: 0;
+  font-family: var(--mo-font-heading);
+  font-size: clamp(3rem, 5.6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+
+/* One short line, so it can be large: a statement, not small print. */
+.lp-hero-lede {
+  margin: var(--mo-space-2xl) 0 0;
+  color: var(--muted);
+  font: 400 clamp(1.125rem, 1.8vw, 1.375rem) / 1.5 var(--mo-font-sans);
+  letter-spacing: 0.01em;
+}
+
+.lp-hero-text .lp-actions {
+  align-items: center;
+  justify-content: center;
+  gap: 20px 32px;
+  margin-top: 44px;
+}
+
+.lp-hero-meta {
+  margin: var(--mo-space-lg) 0 0;
+  color: var(--muted);
+  font: var(--mo-text-caption);
+}
+
+.lp-hero-media {
+  display: flex;
+  justify-content: center;
+  margin-top: 72px;
+}
+
+/* ---------- The Buy button: the one thing on the page that must stand out ----------
+   Hero, header and closing band. Big, bold, the price in its own ink chip, and a soft
+   paper glow on the ink band. The chip takes the band's own tokens. */
+
+.lp-buy {
+  height: 64px;
+  gap: 16px;
+  padding: 0 10px 0 32px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 0 0 1px rgb(244 240 234 / 25%),
+    0 0 0 8px rgb(244 240 234 / 7%),
+    0 18px 44px -14px rgb(244 240 234 / 45%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* No fade on hover (the design system dims .mo-btn-primary): it lifts and glows more. */
+.lp-buy.mo-btn-primary:not(:disabled):hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgb(244 240 234 / 40%),
+    0 0 0 10px rgb(244 240 234 / 10%),
+    0 22px 52px -14px rgb(244 240 234 / 60%);
+}
+
+.lp-buy-price {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--mo-radius-full);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.lp-buy-sm {
+  height: 48px;
+  gap: 12px;
+  padding: 0 6px 0 22px;
+  font-size: 1rem;
+  box-shadow:
+    0 0 0 1px rgb(244 240 234 / 25%),
+    0 10px 26px -12px rgb(244 240 234 / 40%);
+}
+
+.lp-buy-sm .lp-buy-price {
+  height: 36px;
+  padding: 0 14px;
+}
+
+/* The second action is a quiet text link, so the Buy button has no rival. */
+.lp-how {
+  padding: 8px 4px;
+  color: var(--foreground);
+  font: 600 1.0625rem/1 var(--mo-font-sans);
+  text-decoration: underline;
+  text-decoration-color: rgb(244 240 234 / 40%);
+  text-underline-offset: 6px;
+  opacity: 0.85;
+  transition: opacity 140ms ease, text-decoration-color 140ms ease;
+}
+
+.lp-how:hover {
+  opacity: 1;
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Narrow screens ---------- */
+
+@media (max-width: 760px) {
+  .lp-hero {
+    --lp-hero-overlap: 90px;
+  }
+
+  .lp-hero-media {
+    margin-top: 48px;
+  }
+}

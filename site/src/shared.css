@@ -150,3 +150,118 @@
   display: block;
   color: var(--foreground);
 }
+
+/* A MacBook that shows the macOS desktop: menu bar, then the app window in the middle.
+   Screen = width − 32 px bezel, 16:10. At 1000 px the screen is 968 × 605, so the
+   620 × 450 window shows at its native size (sharp at 2×). Narrow screens zoom it. */
+
+.mac-laptop {
+  --mac-laptop-width: 1000px;
+
+  flex: none;
+  width: var(--mac-laptop-width);
+  margin: 0;
+}
+
+.mac-laptop-lid {
+  position: relative;
+  padding: 16px 16px 22px;
+  border-radius: 26px 26px 8px 8px;
+  background: linear-gradient(160deg, #fcfbf9 0%, #e8e5df 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(0 0 0 / 8%),
+    inset 0 -2px 0 rgb(0 0 0 / 6%);
+}
+
+/* Camera */
+.mac-laptop-lid::before {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: #3a3b3d;
+  content: "";
+}
+
+.mac-laptop-screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 6px;
+  background:
+    radial-gradient(120% 90% at 80% 0%, #f7efe2 0%, transparent 60%),
+    linear-gradient(160deg, #d9cbb6 0%, #c8b8a3 45%, #a99a88 100%);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 40%);
+}
+
+.mac-laptop-menubar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 22px;
+  padding: 0 12px;
+  color: #1d1d1f;
+  background: rgb(255 255 255 / 55%);
+  font: 500 11.5px/1 var(--system-font);
+}
+
+.mac-laptop-app {
+  font-weight: 700;
+}
+
+.mac-laptop-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.mac-laptop-status img {
+  width: 14px;
+  height: 14px;
+}
+
+.mac-laptop-window {
+  position: absolute;
+  top: calc(50% + 11px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mac-laptop-base {
+  position: relative;
+  height: 20px;
+  margin: 0 -6%;
+  border-radius: 2px 2px 22px 22px / 2px 2px 14px 14px;
+  background: linear-gradient(#f3f1ed, #cbc7c0 70%, #b4afa7);
+  box-shadow: 0 34px 60px -22px rgb(0 0 0 / 45%);
+}
+
+/* The thumb notch in the base */
+.mac-laptop-base::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 16%;
+  height: 7px;
+  margin-left: -8%;
+  border-radius: 0 0 10px 10px;
+  background: #d8d4cd;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 15%);
+  content: "";
+}
+
+@media (max-width: 1080px) {
+  .mac-laptop {
+    zoom: 0.8;
+  }
+}
+
+@media (max-width: 760px) {
+  .mac-laptop {
+    zoom: 0.36;
+  }
+}

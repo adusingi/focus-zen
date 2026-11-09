@@ -1,0 +1,6 @@
+/* The stylesheet of /thanks and the 404 page: one entry, so the cascade order is exactly
+   this order (see index.page.css). */
+@import "./fonts.css";
+@import "./design-system.css";
+@import "./landing.css";
+@import "./thanks.css";

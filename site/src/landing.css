@@ -55,36 +55,7 @@ a.mo-btn {
   height: 36px;
 }
 
-/* ---------- Hero ---------- */
-
-/* The window keeps its native 620 px but sits in a 540 px column, so it runs past
-   the container into the page margin (the reference's bleed) and the headline
-   gets room for two lines. main clips it on narrower desktops. */
-main {
-  overflow-x: clip;
-}
-
-.lp-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 540px;
-  align-items: center;
-  gap: var(--mo-space-4xl);
-  padding-top: 72px;
-}
-
-.lp-hero .mac-window {
-  max-width: none;
-}
-
-.lp-hero h1 {
-  margin: 0;
-  font-family: var(--mo-font-heading);
-  font-size: clamp(3.25rem, 6.4vw, 5.75rem);
-  font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
+/* ---------- Shared text (hero, thanks, 404) ---------- */
 
 .lp-lede {
   max-width: 44ch;
@@ -201,15 +172,9 @@ main {
   font-size: 0.9375rem;
 }
 
-/* ---------- Closing band: ink, like the app window ----------
-   The band swaps the theme tokens, so .mo-btn-primary turns into a paper button. */
+/* ---------- Closing band: ink, like the hero (colours from .lp-ink in hero.css) ---------- */
 
 .lp-end {
-  --background: #171717;
-  --foreground: #f4f0ea;
-  --muted: #b5aea4;
-  --accent: #f4f0ea;
-
   margin-top: 160px;
   padding: 128px 0 var(--mo-space-3xl);
   color: var(--foreground);
@@ -297,7 +262,6 @@ main {
 /* ---------- Narrow screens ---------- */
 
 @media (max-width: 1080px) {
-  .lp-hero,
   .lp-step,
   .lp-step.is-flipped {
     grid-template-columns: minmax(0, 1fr);
@@ -307,7 +271,6 @@ main {
     order: 0;
   }
 
-  .lp-hero-media,
   .lp-step-media,
   .lp-step.is-flipped .lp-step-media {
     justify-content: flex-start;
@@ -315,10 +278,6 @@ main {
 
   .menubar-scene {
     width: min(100%, 560px);
-  }
-
-  .lp-hero .mac-window {
-    max-width: 100%;
   }
 
   .lp-step-text {
@@ -331,19 +290,11 @@ main {
 }
 
 @media (max-width: 560px) {
-  .lp-hero {
-    padding-top: var(--mo-space-3xl);
-  }
-
   .lp-section {
     padding-top: 96px;
   }
 
   .lp-principles {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .lp-top .mo-btn {
-    display: none;
   }
 }
