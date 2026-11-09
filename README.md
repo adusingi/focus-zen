@@ -125,7 +125,7 @@ cargo test --locked
 
 ## App icon
 
-The icon is a Tai-Chi practitioner in black ink on warm paper, made from an illustration printed on a T-shirt. `src-tauri/icons/icon-source.png` is the 1024 × 1024 master on the macOS icon grid. To make every platform size again after you change it:
+The icon is a Tai-Chi practitioner in black ink on warm paper. `src-tauri/icons/icon-source.png` is the 1024 × 1024 master on the macOS icon grid. To make every platform size again after you change it:
 
 ```sh
 pnpm tauri icon src-tauri/icons/icon-source.png
@@ -136,5 +136,3 @@ The menu bar icon is separate: `src-tauri/icons/tray-template.svg`, rendered to 
 ## License
 
 [MIT](LICENSE) © 2026 Aimable Dusingizimana
-
-The MIT license covers the code. It does not cover the illustration in the app icon, which belongs to its artist.
