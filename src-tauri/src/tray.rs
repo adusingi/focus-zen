@@ -15,6 +15,7 @@ pub fn install(app: &AppHandle) -> tauri::Result<()> {
         app,
         &[
             &MenuItem::with_id(app, actions::SHOW, "Open Focus Zen", true, None::<&str>)?,
+            &MenuItem::with_id(app, actions::HISTORY, "History…", true, None::<&str>)?,
             &MenuItem::with_id(app, actions::SETTINGS, "Settings…", true, None::<&str>)?,
             &PredefinedMenuItem::separator(app)?,
             &MenuItem::with_id(app, actions::QUIT, "Quit Focus Zen", true, None::<&str>)?,

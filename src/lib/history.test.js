@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { dayKey, dayLabel, finishedCountLabel, groupByDay } from "./history.js";
+import {
+  countByDay,
+  dayBounds,
+  dayKey,
+  dayLabel,
+  dotLevel,
+  finishedCountLabel,
+  groupByDay,
+  monthBounds,
+  monthWeeks,
+  weekdayLabels,
+} from "./history.js";
 
 // Build timestamps from local wall-clock times, so the tests pass in any time zone.
 const at = (year, month, day, hour = 12, minute = 0) =>
@@ -69,5 +80,66 @@ describe("finishedCountLabel", () => {
   it("counts finished items", () => {
     expect(finishedCountLabel(1)).toBe("1 finished");
     expect(finishedCountLabel(12)).toBe("12 finished");
+  });
+});
+
+describe("dayBounds", () => {
+  it("covers one local day, midnight to midnight", () => {
+    const [from, to] = dayBounds(new Date(2026, 10, 6, 15, 30));
+    expect(from).toEqual(new Date(2026, 10, 6));
+    expect(to).toEqual(new Date(2026, 10, 7));
+  });
+});
+
+describe("monthBounds", () => {
+  it("covers one local month, including the year turn", () => {
+    expect(monthBounds(2026, 11)).toEqual([new Date(2026, 11, 1), new Date(2027, 0, 1)]);
+  });
+});
+
+describe("monthWeeks", () => {
+  it("starts on Monday and pads the edges with null", () => {
+    // November 2026 starts on a Sunday and has 30 days.
+    const weeks = monthWeeks(2026, 10);
+    expect(weeks).toHaveLength(6);
+    expect(weeks.every((week) => week.length === 7)).toBe(true);
+    expect(weeks[0].slice(0, 6)).toEqual([null, null, null, null, null, null]);
+    expect(weeks[0][6]).toEqual(new Date(2026, 10, 1));
+    expect(weeks[5][0]).toEqual(new Date(2026, 10, 30));
+    expect(weeks[5].slice(1)).toEqual([null, null, null, null, null, null]);
+  });
+
+  it("needs no padding when the month starts on Monday", () => {
+    // February 2027 starts on a Monday and has 28 days.
+    const weeks = monthWeeks(2027, 1);
+    expect(weeks).toHaveLength(4);
+    expect(weeks[0][0]).toEqual(new Date(2027, 1, 1));
+    expect(weeks.flat().includes(null)).toBe(false);
+  });
+});
+
+describe("countByDay", () => {
+  it("counts by local day", () => {
+    const counts = countByDay([
+      task("a", at(2026, 11, 5, 23, 59)),
+      task("b", at(2026, 11, 6, 0, 1)),
+      task("c", at(2026, 11, 6, 9)),
+    ]);
+    expect(Object.fromEntries(counts)).toEqual({ "2026-11-05": 1, "2026-11-06": 2 });
+  });
+});
+
+describe("dotLevel", () => {
+  it("steps up with the number of finished items", () => {
+    expect([0, 1, 2, 3, 4, 6, 7, 30].map(dotLevel)).toEqual([0, 1, 2, 2, 3, 3, 4, 4]);
+  });
+});
+
+describe("weekdayLabels", () => {
+  it("lists seven days, Monday first", () => {
+    const labels = weekdayLabels("en-GB");
+    expect(labels).toHaveLength(7);
+    expect(labels[0]).toBe("M");
+    expect(labels[6]).toBe("S");
   });
 });

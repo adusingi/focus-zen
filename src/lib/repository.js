@@ -8,6 +8,7 @@ const browserStorageKey = "focus-zen-todos-v2";
 const legacyStorageKey = "focus-zen-follow-ups-v1";
 
 const columns = "id, text, created_at, completed_at";
+const searchLimit = 200;
 
 export function isTauri() {
   return "__TAURI_INTERNALS__" in window;
@@ -15,6 +16,11 @@ export function isTauri() {
 
 function byCompletedNewestFirst(a, b) {
   return b.completed_at.localeCompare(a.completed_at) || b.id.localeCompare(a.id);
+}
+
+/** A LIKE pattern that matches `query` anywhere, with % _ and \\ taken literally. */
+function containsPattern(query) {
+  return `%${query.replace(/[\\%_]/g, (char) => `\\${char}`)}%`;
 }
 
 /** Fallback for the plain browser preview (`pnpm dev`): items live in localStorage. */
@@ -50,10 +56,20 @@ function createBrowserRepository() {
       return readAll().filter((task) => !task.completed_at);
     },
 
-    async loadFinished() {
+    /** Items finished in [from, to), newest first. `from` and `to` are ISO strings. */
+    async loadFinishedBetween(from, to) {
       return readAll()
-        .filter((task) => task.completed_at)
+        .filter((task) => task.completed_at && task.completed_at >= from && task.completed_at < to)
         .sort(byCompletedNewestFirst);
+    },
+
+    /** Finished items whose text contains `query` (any case), newest first. */
+    async searchFinished(query) {
+      const needle = query.toLowerCase();
+      return readAll()
+        .filter((task) => task.completed_at && task.text.toLowerCase().includes(needle))
+        .sort(byCompletedNewestFirst)
+        .slice(0, searchLimit);
     },
 
     async add(task) {
@@ -97,9 +113,19 @@ async function createTauriRepository() {
       );
     },
 
-    async loadFinished() {
+    /** Items finished in [from, to), newest first. ISO strings compare in time order. */
+    async loadFinishedBetween(from, to) {
       return database.select(
-        `SELECT ${columns} FROM todos WHERE completed_at IS NOT NULL ORDER BY completed_at DESC, id DESC`,
+        `SELECT ${columns} FROM todos WHERE completed_at >= $1 AND completed_at < $2 ORDER BY completed_at DESC, id DESC`,
+        [from, to],
+      );
+    },
+
+    /** Finished items whose text contains `query` (LIKE is case-insensitive for ASCII), newest first. */
+    async searchFinished(query) {
+      return database.select(
+        `SELECT ${columns} FROM todos WHERE completed_at IS NOT NULL AND text LIKE $1 ESCAPE '\\' ORDER BY completed_at DESC, id DESC LIMIT $2`,
+        [containsPattern(query), searchLimit],
       );
     },
 

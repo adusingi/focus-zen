@@ -3,29 +3,62 @@
 use tauri::{AppHandle, Manager, WebviewUrl, WebviewWindowBuilder, Window, WindowEvent};
 
 const MAIN: &str = "main";
+const HISTORY: &str = "history";
 const SETTINGS: &str = "settings";
+
+/// A secondary window, opened on demand and shown again if it already exists.
+struct Page {
+    label: &'static str,
+    url: &'static str,
+    title: &'static str,
+    size: (f64, f64),
+    min_size: (f64, f64),
+}
+
+const HISTORY_PAGE: Page = Page {
+    label: HISTORY,
+    url: "history.html",
+    title: "History",
+    size: (800.0, 580.0),
+    min_size: (420.0, 420.0),
+};
+
+const SETTINGS_PAGE: Page = Page {
+    label: SETTINGS,
+    url: "settings.html",
+    title: "Settings",
+    size: (520.0, 240.0),
+    min_size: (380.0, 200.0),
+};
 
 pub fn show_main(app: &AppHandle) {
     reveal(app, MAIN);
 }
 
+pub fn show_history(app: &AppHandle) {
+    open(app, &HISTORY_PAGE);
+}
+
 pub fn show_settings(app: &AppHandle) {
-    if app.get_webview_window(SETTINGS).is_none() {
-        let built =
-            WebviewWindowBuilder::new(app, SETTINGS, WebviewUrl::App("settings.html".into()))
-                .title("Settings")
-                .inner_size(540.0, 620.0)
-                .min_inner_size(380.0, 320.0)
-                .center()
-                .build();
+    open(app, &SETTINGS_PAGE);
+}
+
+fn open(app: &AppHandle, page: &Page) {
+    if app.get_webview_window(page.label).is_none() {
+        let built = WebviewWindowBuilder::new(app, page.label, WebviewUrl::App(page.url.into()))
+            .title(page.title)
+            .inner_size(page.size.0, page.size.1)
+            .min_inner_size(page.min_size.0, page.min_size.1)
+            .center()
+            .build();
 
         if let Err(error) = built {
-            eprintln!("could not open the Settings window: {error}");
+            eprintln!("could not open the {} window: {error}", page.title);
             return;
         }
     }
 
-    reveal(app, SETTINGS);
+    reveal(app, page.label);
 }
 
 pub fn on_window_event(window: &Window, event: &WindowEvent) {

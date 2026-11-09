@@ -9,10 +9,6 @@
   padding: 34px 0 56px;
 }
 
-.panel + .panel {
-  margin-top: 48px;
-}
-
 .panel-header {
   display: flex;
   align-items: baseline;
@@ -30,76 +26,6 @@
   text-transform: uppercase;
 }
 
-.panel-meta,
-.day-count,
-.done-time {
-  color: var(--muted-text);
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.day + .day {
-  margin-top: 26px;
-}
-
-.day-title {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.day-count {
-  font-weight: 400;
-}
-
-.done-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.done {
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: start;
-  padding: 6px 0;
-}
-
-.done .box {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  border-color: var(--accent);
-  border-radius: 4px;
-  color: #101419;
-  background: var(--accent);
-}
-
-.done .box::after {
-  width: 7px;
-  height: 3.5px;
-}
-
-.done-text {
-  min-width: 0;
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1.45;
-  opacity: 0.78;
-  overflow-wrap: anywhere;
-}
-
-.done-time {
-  line-height: 1.45rem;
-}
-
-.empty,
 .database-note {
   max-width: 34em;
   margin: 0;

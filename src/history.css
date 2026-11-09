@@ -1,0 +1,309 @@
+/* History window: search on top, the month on the left, the chosen day on the right.
+   Colors, font, and .box come from styles.css. */
+
+.history {
+  /* --muted (#626567) is for borders; text needs more contrast (5.4:1 on --background). */
+  --muted-text: #8c8f91;
+  --cell: 40px;
+
+  width: min(calc(100% - 40px), 860px);
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+/* ---------- Search ---------- */
+
+.search-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 14px;
+  border: 1.5px solid var(--muted);
+  border-radius: 8px;
+  outline: none;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  transition: border-color 120ms ease;
+}
+
+.search-input::placeholder {
+  color: var(--muted-text);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.history-body {
+  display: grid;
+  grid-template-columns: calc(7 * var(--cell)) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+/* ---------- Calendar ---------- */
+
+/* It stays in view while a long day or a long search result scrolls. */
+.calendar {
+  position: sticky;
+  top: 24px;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.month-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.nav-button,
+.today-button {
+  border: 0;
+  color: var(--muted-text);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nav-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.nav-button:hover:not(:disabled),
+.today-button:hover {
+  color: var(--text);
+}
+
+.nav-button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.weekdays,
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, var(--cell));
+}
+
+.weekdays span {
+  color: var(--muted-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.month-grid {
+  margin-top: 6px;
+  row-gap: 4px;
+}
+
+.day-cell {
+  display: grid;
+  width: var(--cell);
+  height: 44px;
+  padding: 5px 0 0;
+  place-items: start center;
+  border: 0;
+  border-radius: 8px;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.day-cell.is-blank {
+  cursor: default;
+}
+
+.day-cell:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.day-cell:hover:not(:disabled) {
+  background: rgb(255 255 255 / 5%);
+}
+
+.day-cell[aria-pressed="true"] {
+  background: rgb(255 255 255 / 10%);
+}
+
+.day-cell:focus-visible {
+  outline: 2px solid rgb(145 184 246 / 50%);
+  outline-offset: -2px;
+}
+
+.day-number {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.day-cell.is-today .day-number {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* The dot: larger and brighter when more was finished that day. Size and brightness
+   both step up, so the five levels stay apart at a glance. */
+.day-dot {
+  width: 4px;
+  height: 4px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+}
+
+.day-cell[data-level="1"] .day-dot {
+  opacity: 0.4;
+}
+
+.day-cell[data-level="2"] .day-dot {
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+.day-cell[data-level="3"] .day-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  opacity: 0.85;
+}
+
+.day-cell[data-level="4"] .day-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  opacity: 1;
+}
+
+.calendar-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  min-height: 20px;
+  margin-top: 12px;
+}
+
+.month-total,
+.day-count,
+.done-time {
+  color: var(--muted-text);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.today-button {
+  padding: 0;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- The chosen day, or the search results ---------- */
+
+.day-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
+.day-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.result-day + .result-day {
+  margin-top: 22px;
+}
+
+.result-day-title {
+  margin: 0 0 2px;
+  color: var(--muted-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.done-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.done {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 6px 0;
+}
+
+.done .box {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  border-color: var(--accent);
+  border-radius: 4px;
+  color: #101419;
+  background: var(--accent);
+}
+
+.done .box::after {
+  width: 7px;
+  height: 3.5px;
+}
+
+.done-text {
+  min-width: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.45;
+  opacity: 0.78;
+  overflow-wrap: anywhere;
+}
+
+.done-time {
+  line-height: 1.45rem;
+}
+
+.empty {
+  max-width: 30em;
+  margin: 6px 0 0;
+  color: var(--muted-text);
+  line-height: 1.55;
+}
+
+/* ---------- Narrow windows: the calendar above the day ---------- */
+
+@media (max-width: 620px) {
+  .history-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .calendar {
+    position: static;
+    justify-self: center;
+  }
+}

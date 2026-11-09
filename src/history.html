@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#18191a" />
+    <title>History</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/history.css" />
+  </head>
+
+  <body>
+    <main class="history">
+      <div class="search">
+        <input
+          class="search-input"
+          id="search"
+          type="search"
+          placeholder="Search finished items"
+          aria-label="Search finished items"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <div class="history-body">
+        <section class="calendar" aria-labelledby="month-title">
+          <div class="calendar-nav">
+            <button class="nav-button" id="prev-month" type="button" aria-label="Previous month">‹</button>
+            <h1 class="month-title" id="month-title"></h1>
+            <button class="nav-button" id="next-month" type="button" aria-label="Next month">›</button>
+          </div>
+          <div class="weekdays" id="weekdays" aria-hidden="true"></div>
+          <div class="month-grid" id="month-grid"></div>
+          <div class="calendar-foot">
+            <span class="month-total" id="month-total"></span>
+            <button class="today-button" id="today" type="button" hidden>Today</button>
+          </div>
+        </section>
+
+        <section class="day-panel" aria-labelledby="day-title">
+          <header class="day-header">
+            <h2 class="day-title" id="day-title"></h2>
+            <span class="day-count" id="day-count"></span>
+          </header>
+          <div id="day-items"></div>
+          <p class="empty" id="day-empty" hidden></p>
+        </section>
+      </div>
+
+      <p class="sr-only" id="status" aria-live="polite"></p>
+    </main>
+
+    <script type="module" src="/history.js"></script>
+  </body>
+</html>

@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: page("index"),
         settings: page("settings"),
+        history: page("history"),
       },
     },
   },

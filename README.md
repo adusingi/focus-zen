@@ -30,14 +30,15 @@ You can also clear the block in Terminal: `xattr -dr com.apple.quarantine "/Appl
 | Edit an item | Click its text, change it, then press <kbd>Enter</kbd> |
 | Cancel an edit | Press <kbd>Esc</kbd> |
 | Finish an item | Click its checkbox |
-| See what you finished | Click the menu bar icon and choose **Settings…**, or press <kbd>⌘</kbd> <kbd>,</kbd> |
+| See what you finished | Click the menu bar icon and choose **History…**, or press <kbd>⌘</kbd> <kbd>Y</kbd> |
+| Find a finished item | In History, type in the search field (<kbd>⌘</kbd> <kbd>F</kbd>) |
 | Hide the list | Close the window. Focus Zen keeps running in the menu bar |
 | Bring the list back | Click the menu bar icon and choose **Open Focus Zen** |
 | Quit | Click the menu bar icon and choose **Quit Focus Zen**, or press <kbd>⌘</kbd> <kbd>Q</kbd> |
 
-Finished items leave the list. They stay in the database with a `completed_at` timestamp, next to the `created_at` timestamp of every item. **Settings → History** shows them grouped by the day you finished them, newest first. Hover an item to see when it was added and finished.
+Finished items leave the list. They stay in the database with a `completed_at` timestamp, next to the `created_at` timestamp of every item. **History** shows them on a calendar: each day has a dot, larger and brighter when you finished more that day. Click a day (or use the arrow keys) to see what you finished then, or search all finished items. Hover an item to see when it was added and finished.
 
-![The History list in Settings, grouped by day](docs/history.png)
+![The History window: October on a calendar, and the items finished on 26 October](docs/history.png)
 
 While the list window is closed, Focus Zen has no Dock icon. It shows only in the menu bar, next to Wi-Fi and Bluetooth.
 
@@ -103,7 +104,8 @@ Each computer keeps its own list. To move your list to another computer, quit Fo
 
 ```text
 src/                     List window: index.html, styles.css, app.js (plain JavaScript, built by Vite)
-src/settings.*           Settings window: History and Database
+src/history.*            History window: a month calendar, the chosen day, and search
+src/settings.*           Settings window: the database location
 src/lib/                 Shared code: the database repository and the History date helpers (with tests)
 src-tauri/src/           Rust app: windows, menu bar icon, macOS app menu, database location
 src-tauri/migrations/    SQL migrations, applied on start
