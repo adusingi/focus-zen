@@ -117,7 +117,7 @@ The landing page at <https://focus.mobayilo.com> lives in `site/`: plain HTML an
 
 | Page | Purpose |
 | --- | --- |
-| `site/index.html` | The sales page. Every **Buy** button opens the Stripe payment link. |
+| `site/index.html` | The home page. **Support & download ($5)** opens the Stripe payment link; **or get it free on GitHub** opens the latest release. |
 | `site/thanks.html` | Where Stripe sends buyers after payment (`/thanks`): the download and the install steps. |
 | `site/404.html` | Shown for any unknown address. |
 

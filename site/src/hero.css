@@ -78,8 +78,17 @@
   margin-top: 44px;
 }
 
+/* Why there are two options: support with $5, or the free download. */
+.lp-hero-note {
+  max-width: 74ch;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font: 400 0.9375rem/1.55 var(--mo-font-sans);
+  text-wrap: balance;
+}
+
 .lp-hero-meta {
-  margin: var(--mo-space-lg) 0 0;
+  margin: var(--mo-space-sm) 0 0;
   color: var(--muted);
   font: var(--mo-text-caption);
 }
@@ -141,6 +150,19 @@
 .lp-buy-sm .lp-buy-price {
   height: 36px;
   padding: 0 14px;
+}
+
+/* The header button has no price chip ("Get Focus Zen"), so its padding is even. */
+.lp-buy-plain {
+  padding: 0 22px;
+}
+
+/* The closing band repeats the hero's two options, centred. */
+.lp-end-actions {
+  align-items: center;
+  justify-content: center;
+  gap: 20px 32px;
+  margin-top: 0;
 }
 
 /* The second action is a quiet text link, so the Buy button has no rival. */
