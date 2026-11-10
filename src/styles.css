@@ -4,6 +4,8 @@
   --text: #e8e7e3;
   --muted: #626567;
   --accent: #91b8f6;
+  --text-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  --line-height: calc(var(--text-size) * 1.55);
 }
 
 * {
@@ -49,6 +51,7 @@ body {
 }
 
 .task {
+  grid-template-columns: 24px minmax(0, 1fr) auto;
   animation: appear 140ms ease-out both;
   transform-origin: top;
 }
@@ -118,9 +121,9 @@ body {
   outline: none;
   overflow-wrap: anywhere;
   caret-color: var(--accent);
-  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  font-size: var(--text-size);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: var(--line-height);
 }
 
 .task-text::selection,
@@ -132,6 +135,21 @@ body {
 .task-text:focus,
 .draft:focus {
   color: #fff;
+}
+
+.task-age {
+  min-width: 2.5ch;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  line-height: var(--line-height);
+  text-align: right;
+  cursor: default;
+  user-select: none;
+}
+
+.task-text:focus ~ .task-age {
+  color: #8c8f91;
 }
 
 .draft-row .box {

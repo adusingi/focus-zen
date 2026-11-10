@@ -2,6 +2,7 @@ mod actions;
 mod database;
 #[cfg(target_os = "macos")]
 mod menu;
+mod shortcut;
 mod tray;
 mod windows;
 
@@ -11,12 +12,14 @@ pub fn run() {
         .plugin(database::plugin())
         .invoke_handler(tauri::generate_handler![
             database::database_location,
-            database::reveal_database
+            database::reveal_database,
+            windows::hide_list
         ])
         .setup(|app| {
             #[cfg(target_os = "macos")]
             menu::install(app.handle())?;
             tray::install(app.handle())?;
+            shortcut::install(app.handle())?;
             Ok(())
         })
         .on_menu_event(|app, event| actions::run(app, event.id().as_ref()))

@@ -26,15 +26,22 @@ You can also clear the block in Terminal: `xattr -dr com.apple.quarantine "/Appl
 
 | Action | How |
 | --- | --- |
+| Open the list from any app | Press <kbd>⌥</kbd> <kbd>Space</kbd>. The cursor is on the empty line |
 | Add an item | Type on the empty line, then press <kbd>Enter</kbd> |
-| Edit an item | Click its text, change it, then press <kbd>Enter</kbd> |
+| Close the list | Press <kbd>Esc</kbd> on the empty line, or <kbd>⌥</kbd> <kbd>Space</kbd> again. You go back to the app you were in. Text you typed but did not save with Enter is saved |
+| Move between lines | Press <kbd>↑</kbd> or <kbd>↓</kbd> |
+| Edit an item | Click its text, or move to it with <kbd>↑</kbd>. Change it, then press <kbd>Enter</kbd> |
 | Cancel an edit | Press <kbd>Esc</kbd> |
-| Finish an item | Click its checkbox |
+| Finish an item | Click its checkbox, or press <kbd>⌘</kbd> <kbd>Enter</kbd> on its line |
 | See what you finished | Click the menu bar icon and choose **History…**, or press <kbd>⌘</kbd> <kbd>Y</kbd> |
 | Find a finished item | In History, type in the search field (<kbd>⌘</kbd> <kbd>F</kbd>) |
 | Hide the list | Close the window. Focus Zen keeps running in the menu bar |
 | Bring the list back | Click the menu bar icon and choose **Open Focus Zen** |
 | Quit | Click the menu bar icon and choose **Quit Focus Zen**, or press <kbd>⌘</kbd> <kbd>Q</kbd> |
+
+Each item shows how long ago you added it: `now`, then minutes (`12m`), hours (`5h`), and days (`3d`) after 24 hours. Hover the age to see the exact date and time.
+
+If another app already uses <kbd>⌥</kbd> <kbd>Space</kbd>, Focus Zen cannot use it. Open the list from the menu bar icon instead.
 
 Finished items leave the list. They stay in the database with a `completed_at` timestamp, next to the `created_at` timestamp of every item. **History** shows them on a calendar: each day has a dot, larger and brighter when you finished more that day. Click a day (or use the arrow keys) to see what you finished then, or search all finished items. Hover an item to see when it was added and finished.
 
