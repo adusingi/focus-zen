@@ -135,7 +135,7 @@ pnpm site:dev      # http://127.0.0.1:1430
 pnpm site:deploy   # build site/dist, then deploy to focus.mobayilo.com (needs `pnpm exec wrangler login`)
 ```
 
-The download link on `site/thanks.html` names the release (`v0.3.0`). Update it with each release, and deploy the site only after the release is published.
+The download link on `site/thanks.html` names the release (`v0.4.0`). Update it with each release, and deploy the site only after the release is published.
 
 ## Contributing
 
