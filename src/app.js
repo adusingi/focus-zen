@@ -110,9 +110,12 @@ function makeTaskElement(task) {
     event.stopPropagation();
     if (checkbox.disabled) return;
 
-    // Move on before the item leaves, so the next ⌘Enter finishes the next item.
-    const all = lines();
-    placeCaretAtEnd(all[all.indexOf(text) + 1] ?? draft);
+    // Stay where you are in the list: the item below takes this place, or the
+    // item above when this was the last one. Only an empty list sends the
+    // caret to the empty line.
+    const items = lines().filter((line) => line !== draft);
+    const index = items.indexOf(text);
+    placeCaretAtEnd(items[index + 1] ?? items[index - 1] ?? draft);
     checkbox.checked = true;
     void finishTask(task.id, item, checkbox);
   });
