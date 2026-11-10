@@ -80,8 +80,8 @@ The macOS build is signed ad hoc and is not notarized. It opens normally on the 
 2. Tag that commit and push the tag:
 
    ```sh
-   git tag v0.2.0
-   git push origin v0.2.0
+   git tag vX.Y.Z           # the version you just set, e.g. v0.4.0
+   git push origin vX.Y.Z
    ```
 
 The [Release workflow](.github/workflows/release.yml) builds a universal `.dmg` (Apple Silicon and Intel), checks it, and publishes it with a SHA-256 checksum as a GitHub Release. It stops if the tag and the three versions do not match.
