@@ -129,9 +129,14 @@
 }
 
 .menu-item {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   padding: 6px 10px;
   border-radius: 5px;
+}
+
+.menu-shortcut {
+  opacity: 0.55;
 }
 
 .menu-item:first-child {
