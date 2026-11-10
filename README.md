@@ -9,7 +9,7 @@ A quiet desktop checklist for follow-ups. Type a line, press Enter, tick it off 
 
 Built with [Tauri 2](https://tauri.app) and Rust. Items are stored locally in SQLite. There is no account, no sync, and no network access.
 
-![Focus Zen with four open follow-ups](docs/screenshot.png)
+![Focus Zen with four open follow-ups, each with its age: 3d, 1d, 5h and 12m](docs/screenshot.png)
 
 ## Download
 
