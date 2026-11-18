@@ -2,7 +2,7 @@
 
 # Focus Zen
 
-[![CI](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml/badge.svg)](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml)
+[![CI](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml/badge.svg?branch=development)](https://github.com/adusingi/focus-zen/actions/workflows/ci.yml?query=branch%3Adevelopment)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A quiet desktop checklist for follow-ups. Type a line, press Enter, tick it off when it is done. Nothing else on the screen.

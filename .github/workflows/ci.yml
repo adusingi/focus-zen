@@ -1,8 +1,10 @@
 name: CI
 
+# main only gets fast-forwards of commits that already passed CI on
+# development, and a release tag runs release.yml, so main is not tested again.
 on:
   push:
-    branches: [main, development]
+    branches: [development]
   pull_request:
 
 permissions:
