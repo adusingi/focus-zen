@@ -22,7 +22,8 @@
     "test": "vitest run",
     "site:dev": "vite --config site/vite.config.js --host 127.0.0.1 --port 1430 --strictPort",
     "site:build": "vite build --config site/vite.config.js",
-    "site:deploy": "pnpm site:build && wrangler deploy --config site/wrangler.jsonc"
+    "site:deploy": "pnpm site:build && wrangler deploy --config site/wrangler.jsonc",
+    "site:prototype": "vite --config site/vite.config.js --host 127.0.0.1 --port 1430 --strictPort --open /prototype-home.html"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.12.4",
