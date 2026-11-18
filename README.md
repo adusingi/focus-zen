@@ -16,11 +16,7 @@ Built with [Tauri 2](https://tauri.app) and Rust. Items are stored locally in SQ
 Get the `.dmg` from the [latest release](https://github.com/adusingi/focus-zen/releases/latest). It runs on Apple Silicon and Intel Macs with macOS 12 or later.
 
 1. Open the `.dmg` and drag **Focus Zen** into **Applications**.
-2. Open Focus Zen. The app is not notarized by Apple, so macOS blocks the first launch:
-   - **macOS 15 or later:** click **Done**, open **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
-   - **macOS 14 or earlier:** right-click the app, choose **Open**, then click **Open**.
-
-You can also clear the block in Terminal: `xattr -dr com.apple.quarantine "/Applications/Focus Zen.app"`
+2. Open Focus Zen. The app is signed with an Apple Developer ID and notarized by Apple, so it opens like any other app.
 
 ## Use it
 
@@ -79,7 +75,7 @@ pnpm tauri build
 
 The app and its installer are written to `src-tauri/target/release/bundle/`. On a Mac you get `Focus Zen.app` and a `.dmg`.
 
-The macOS build is signed ad hoc and is not notarized. It opens normally on the Mac that built it. On another Mac, Gatekeeper blocks the first launch; see [Download](#download) for how to open it.
+A local build is signed ad hoc and is not notarized. It opens normally on the Mac that built it, but Gatekeeper blocks it on other Macs. Only the release workflow signs with the Developer ID certificate and notarizes the app (see [Release](#release)).
 
 ## Release
 
@@ -92,6 +88,8 @@ The macOS build is signed ad hoc and is not notarized. It opens normally on the 
    ```
 
 The [Release workflow](.github/workflows/release.yml) builds a universal `.dmg` (Apple Silicon and Intel), checks it, and publishes it with a SHA-256 checksum as a GitHub Release. It stops if the tag and the three versions do not match.
+
+The workflow signs the app with the Developer ID Application certificate and notarizes both the app and the `.dmg` with an App Store Connect API key (role: Developer). It stops if any signing secret is missing or if Gatekeeper does not accept the result. The repository secrets are listed at the top of the workflow file. The certificate expires on 18 December 2027: before that date, create a new one at [Certificates, IDs & Profiles](https://developer.apple.com/account/resources/certificates/list) and update `APPLE_CERTIFICATE` and `APPLE_CERTIFICATE_PASSWORD`.
 
 ## Where your data lives
 

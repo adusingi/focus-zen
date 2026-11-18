@@ -3,6 +3,17 @@ name: Release
 # Push a tag such as v0.1.0 to build the universal macOS .dmg and publish it
 # as a GitHub Release. Run it by hand (workflow_dispatch) to build the .dmg as
 # a workflow artifact only, without publishing anything.
+#
+# The app is signed with a Developer ID certificate and notarized by Apple.
+# Without both, macOS tells users the app may be malware and offers to move it
+# to the Trash, so this workflow fails instead of shipping such a build.
+# Repository secrets it needs:
+#   APPLE_CERTIFICATE           Developer ID Application certificate + key, .p12, base64
+#   APPLE_CERTIFICATE_PASSWORD  password of that .p12
+#   APPLE_SIGNING_IDENTITY      "Developer ID Application: <name> (<team id>)"
+#   APPLE_API_ISSUER            App Store Connect API issuer ID
+#   APPLE_API_KEY_ID            App Store Connect API key ID
+#   APPLE_API_PRIVATE_KEY       contents of that key's AuthKey_<id>.p8
 
 on:
   push:
@@ -20,7 +31,13 @@ jobs:
   macos:
     name: macOS universal .dmg
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
+    env:
+      APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+      APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+      APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+      APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+      APPLE_API_KEY: ${{ secrets.APPLE_API_KEY_ID }}
     steps:
       - uses: actions/checkout@v7
 
@@ -40,6 +57,27 @@ jobs:
           fi
           echo "value=$app" >> "$GITHUB_OUTPUT"
 
+      - name: Check the signing secrets
+        env:
+          APPLE_API_PRIVATE_KEY: ${{ secrets.APPLE_API_PRIVATE_KEY }}
+        run: |
+          missing=()
+          [ -n "$APPLE_CERTIFICATE" ] || missing+=(APPLE_CERTIFICATE)
+          [ -n "$APPLE_CERTIFICATE_PASSWORD" ] || missing+=(APPLE_CERTIFICATE_PASSWORD)
+          [ -n "$APPLE_SIGNING_IDENTITY" ] || missing+=(APPLE_SIGNING_IDENTITY)
+          [ -n "$APPLE_API_ISSUER" ] || missing+=(APPLE_API_ISSUER)
+          [ -n "$APPLE_API_KEY" ] || missing+=(APPLE_API_KEY_ID)
+          [ -n "$APPLE_API_PRIVATE_KEY" ] || missing+=(APPLE_API_PRIVATE_KEY)
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::Missing repository secrets: ${missing[*]}"
+            exit 1
+          fi
+          key="$RUNNER_TEMP/AuthKey_$APPLE_API_KEY.p8"
+          printf '%s\n' "$APPLE_API_PRIVATE_KEY" > "$key"
+          chmod 600 "$key"
+          # Tauri notarizes the app with this key after it signs it.
+          echo "APPLE_API_KEY_PATH=$key" >> "$GITHUB_ENV"
+
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
@@ -53,9 +91,11 @@ jobs:
           workspaces: src-tauri
 
       - run: pnpm install --frozen-lockfile
+      # Tauri imports APPLE_CERTIFICATE into a temporary keychain, signs the app
+      # with the hardened runtime, notarizes it and staples the ticket to it.
       - run: pnpm tauri build --target universal-apple-darwin --bundles dmg
 
-      - name: Name and verify the .dmg
+      - name: Name, notarize and verify the .dmg
         id: dmg
         run: |
           cd src-tauri/target/universal-apple-darwin/release/bundle/dmg
@@ -63,11 +103,22 @@ jobs:
           name="Focus-Zen_${{ steps.version.outputs.value }}_universal.dmg"
           mv "${built[0]}" "$name"
 
+          # Notarize the disk image too, so Gatekeeper accepts it offline.
+          xcrun notarytool submit "$name" --wait --timeout 30m \
+            --key "$APPLE_API_KEY_PATH" --key-id "$APPLE_API_KEY" --issuer "$APPLE_API_ISSUER"
+          xcrun stapler staple "$name"
+          xcrun stapler validate "$name"
+          spctl --assess --type open --context context:primary-signature --verbose=2 "$name"
+
           mount="$(mktemp -d)"
           hdiutil attach -nobrowse -readonly -mountpoint "$mount" "$name"
           app="$mount/Focus Zen.app"
           lipo "$app/Contents/MacOS/focus-zen" -verify_arch arm64 x86_64
-          codesign --verify --deep --strict "$app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign --display --verbose=2 "$app" 2>&1 | grep -F "Authority=Developer ID Application:"
+          codesign --display --verbose=2 "$app" 2>&1 | grep -E "flags=.*runtime"
+          xcrun stapler validate "$app"
+          spctl --assess --type execute --verbose=2 "$app" 2>&1 | tee /dev/stderr | grep -F "source=Notarized Developer ID"
           test -L "$mount/Applications"
           # Without bundle.icon in tauri.conf.json the app ships with the generic icon.
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIconFile' "$app/Contents/Info.plist")" = "icon.icns"
