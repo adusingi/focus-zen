@@ -15,9 +15,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Focus Zen ships for macOS only, so lint runs on macOS: it checks the code
+  # that ships, and needs no system packages (on Ubuntu, apt often hung).
   lint:
     name: Lint
-    runs-on: ubuntu-24.04
+    runs-on: macos-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
@@ -32,8 +34,6 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
-      - name: Install Tauri system packages
-        run: .github/scripts/install-linux-deps.sh
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm build
@@ -49,7 +49,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-24.04, windows-latest]
+        os: [macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
@@ -63,8 +63,5 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
-      - name: Install Tauri system packages
-        if: runner.os == 'Linux'
-        run: .github/scripts/install-linux-deps.sh
       - run: pnpm install --frozen-lockfile
       - run: pnpm tauri build --no-bundle
