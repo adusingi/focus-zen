@@ -15,8 +15,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Focus Zen ships for macOS only, so lint runs on macOS: it checks the code
-  # that ships, and needs no system packages (on Ubuntu, apt often hung).
+  # Focus Zen ships for macOS only, so CI checks and builds on macOS only: it
+  # tests the code that ships, and needs no system packages (on Ubuntu, apt
+  # often hung).
   lint:
     name: Lint
     runs-on: macos-latest
@@ -45,12 +46,8 @@ jobs:
         working-directory: src-tauri
 
   build:
-    name: Build (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    name: Build (macOS)
+    runs-on: macos-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
