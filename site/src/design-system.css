@@ -1,26 +1,27 @@
 /* @mobayilo/design-system, copied (the packages are not published yet).
    Source: ~/Documents/Code/p/design-system @ 8f74f89 (design.mobayilo.com)
-   - Theme block: "tokyo-night", generated from themes/src/themes.ts.
+   - Theme block: "tokyo-night" v2 "sharp", generated from themes/src/themes.ts
+     (design-system branch feat/sharp-tokyo-night, f8b3ecd). Keep the two in step.
    - :root scales and .mo-btn: verbatim from ui/styles.css.
    - The footer is ui/footer.css, written to mo-footer.css by `mo-footer css`.
    When the packages are published, depend on @mobayilo/themes + @mobayilo/ui instead. */
 
 html[data-theme="tokyo-night"] {
-  --background: #151a2d;
-  --background-rgb: 21 26 45;
-  --panel: #1a1f37;
-  --panel-soft: #242b45;
-  --line: #3b4261;
+  --background: #11131d;
+  --background-rgb: 17 19 29;
+  --panel: #1b1e2e;
+  --panel-soft: #23273a;
+  --line: #2f344d;
   --line-strong: #7aa2f7;
-  --foreground: #d5d6db;
-  --muted: #a9b1d6;
-  --muted-soft: #7982a9;
+  --foreground: #eceffb;
+  --muted: #9aa3c9;
+  --muted-soft: #7c85ad;
   --accent: #7aa2f7;
   --accent-strong: #bb9af7;
   --accent-wash: rgba(122, 162, 247, 0.16);
-  --chip-background: #242b45;
+  --chip-background: #23273a;
   --chip-foreground: #c0caf5;
-  --card-shadow: 0 12px 32px rgba(6, 8, 20, 0.36);
+  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   --page-gradient: none;
 }
 
