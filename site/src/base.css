@@ -33,6 +33,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 63px; /* the sticky bar */
 }
 
 body {
@@ -74,6 +75,38 @@ img {
   font: 700 17px var(--mono);
   color: var(--accent);
   text-decoration: none;
+}
+
+/* The top bar, as Clarity's: the mark left, one small green action right, sticky
+   over a blurred black. */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 62px;
+}
+
+.bar-go {
+  padding: 6px 14px;
+  background: var(--go);
+  color: var(--bg);
+  font: 600 14px var(--mono);
+  text-decoration: none;
+}
+
+.bar-go:hover {
+  filter: brightness(1.08);
 }
 
 /* Titles: the second half in purple, as Clarity's title line. */

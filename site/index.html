@@ -32,22 +32,33 @@
     <script type="module" src="./src/try-list.js"></script>
   </head>
   <body>
-    <header class="hero wrap" id="top">
-      <div class="hero-text">
+    <header class="bar" id="top">
+      <div class="bar-inner wrap">
         <a class="mark" href="/">▌focus zen</a>
-        <h1 class="title">One list. <em>Nothing else.</em></h1>
+        <a class="bar-go" href="#get">Get Focus Zen</a>
+      </div>
+    </header>
+
+    <section class="hero wrap">
+      <div class="hero-text">
+        <div class="hero-head">
+          <p class="eyebrow">A simple to-do list for Mac</p>
+          <h1 class="title">One list. <em>Nothing else.</em></h1>
+          <p class="hero-lede">Write it down. Check it off. Move on.</p>
+        </div>
         <div class="actions">
           <a class="go" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
             ><span>Support &amp; download</span><span>$5 →</span></a
           >
-          <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or free on GitHub</a>
+          <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or get it free on GitHub →</a>
         </div>
-        <ul class="meta">
-          <li>macOS 12+</li>
-          <li>9.9 MB</li>
-          <li>no account</li>
-          <li>no cloud</li>
-        </ul>
+        <div class="hero-foot">
+          <p class="hero-note">Open source. If it helps you, $5, the price of a coffee, keeps it going.</p>
+          <ul class="meta">
+            <li>macOS 12 or later</li>
+            <li>Apple Silicon and Intel</li>
+          </ul>
+        </div>
       </div>
       <div class="hero-media">
         <!-- The Focus Zen window. try-list.js makes it work; without it, it is a picture. -->
@@ -63,7 +74,7 @@
         </figure>
         <p class="try-hint"><kbd>enter</kbd> add · <kbd>click</kbd> done · try it</p>
       </div>
-    </header>
+    </section>
 
     <main>
       <section class="step wrap">

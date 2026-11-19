@@ -9,7 +9,8 @@
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   align-items: center;
   gap: 64px;
-  min-height: min(100vh, 860px);
+  /* One screen under the 63px bar, but never a vast one. */
+  min-height: min(calc(100vh - 63px), 820px);
   padding-top: 48px;
   padding-bottom: 64px;
 }
@@ -17,13 +18,34 @@
 .hero-text {
   display: grid;
   justify-items: start;
-  gap: 36px;
+  gap: 32px;
+}
+
+.hero-head .eyebrow {
+  margin-bottom: 18px;
 }
 
 .title {
   margin: 0;
   font: 400 clamp(48px, 5.4vw, 76px) / 1.02 var(--serif);
   color: var(--bright);
+}
+
+.hero-lede {
+  margin: 20px 0 0;
+  color: var(--text);
+  font: 17px var(--mono);
+}
+
+.hero-foot {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-note {
+  margin: 0;
+  color: var(--dim);
+  font-size: 14px;
 }
 
 .title em {
