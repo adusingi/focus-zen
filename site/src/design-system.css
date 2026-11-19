@@ -1,0 +1,141 @@
+/* @mobayilo/design-system, copied (the packages are not published yet).
+   Source: ~/Documents/Code/p/design-system @ 8f74f89 (design.mobayilo.com)
+   - Theme block: "tokyo-night", generated from themes/src/themes.ts.
+   - :root scales and .mo-btn: verbatim from ui/styles.css.
+   - The footer is ui/footer.css, written to mo-footer.css by `mo-footer css`.
+   When the packages are published, depend on @mobayilo/themes + @mobayilo/ui instead. */
+
+html[data-theme="tokyo-night"] {
+  --background: #151a2d;
+  --background-rgb: 21 26 45;
+  --panel: #1a1f37;
+  --panel-soft: #242b45;
+  --line: #3b4261;
+  --line-strong: #7aa2f7;
+  --foreground: #d5d6db;
+  --muted: #a9b1d6;
+  --muted-soft: #7982a9;
+  --accent: #7aa2f7;
+  --accent-strong: #bb9af7;
+  --accent-wash: rgba(122, 162, 247, 0.16);
+  --chip-background: #242b45;
+  --chip-foreground: #c0caf5;
+  --card-shadow: 0 12px 32px rgba(6, 8, 20, 0.36);
+  --page-gradient: none;
+}
+
+:root {
+  /* Spacing (4px base) */
+  --mo-space-xs: 4px;
+  --mo-space-sm: 8px;
+  --mo-space-md: 12px;
+  --mo-space-lg: 16px;
+  --mo-space-xl: 24px;
+  --mo-space-2xl: 32px;
+  --mo-space-3xl: 48px;
+  --mo-space-4xl: 64px;
+
+  /* Radius */
+  --mo-radius-sm: 8px;
+  --mo-radius-md: 16px;
+  --mo-radius-lg: 24px;
+  --mo-radius-full: 9999px;
+
+  /* Elevation (layered on top of each theme's single --card-shadow) */
+  --mo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+  --mo-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.16);
+  --mo-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.24);
+
+  /* Type: the actual Mobayilo pairing — Cormorant Garamond for display/
+     headings, Inconsolata for everything else (body, UI chrome, values).
+     Identical across mobayilo, academy-mobayilo, and inkoranyamuga; a project
+     that wants something else overrides these three variables. Projects
+     using next/font should set them to the generated font-variable, e.g.
+     `--mo-font-heading: var(--font-cormorant);`. */
+  --mo-font-heading: "Cormorant Garamond", Georgia, serif;
+  --mo-font-sans: "Inconsolata", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --mo-font-mono: "Inconsolata", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --mo-text-display: 700 3.5rem/1.05 var(--mo-font-heading);
+  --mo-text-h1: 700 2.5rem/1.15 var(--mo-font-heading);
+  --mo-text-h2: 600 2rem/1.2 var(--mo-font-heading);
+  --mo-text-h3: 600 1.375rem/1.35 var(--mo-font-heading);
+  --mo-text-body-lg: 400 1.125rem/1.55 var(--mo-font-sans);
+  --mo-text-body: 400 1rem/1.6 var(--mo-font-sans);
+  --mo-text-caption: 500 0.8125rem/1.4 var(--mo-font-sans);
+}
+
+/* ---------- Button ---------- */
+.mo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mo-space-sm);
+  border: 1px solid transparent;
+  border-radius: var(--mo-radius-full);
+  font-family: var(--mo-font-sans);
+  font-weight: 600;
+  /* .mo-btn is also used on <a> (a link that looks like a button); without
+     this the browser underlines its label. */
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 140ms ease, border-color 140ms ease, opacity 140ms ease;
+}
+.mo-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.mo-btn-sm {
+  height: 34px;
+  padding: 0 var(--mo-space-lg);
+  font-size: 0.8125rem;
+}
+.mo-btn-md {
+  height: 44px;
+  padding: 0 var(--mo-space-xl);
+  font-size: 0.875rem;
+}
+.mo-btn-lg {
+  height: 52px;
+  padding: 0 var(--mo-space-2xl);
+  font-size: 0.9375rem;
+}
+.mo-btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+}
+.mo-btn-primary:not(:disabled):hover {
+  opacity: 0.88;
+}
+.mo-btn-accent {
+  background: var(--accent);
+  color: var(--background);
+}
+.mo-btn-accent:not(:disabled):hover {
+  background: var(--accent-strong);
+}
+.mo-btn-outline {
+  background: var(--panel);
+  color: var(--foreground);
+  border-color: var(--line);
+}
+.mo-btn-outline:not(:disabled):hover {
+  border-color: var(--line-strong);
+}
+.mo-btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  padding-left: var(--mo-space-sm);
+  padding-right: var(--mo-space-sm);
+}
+.mo-btn-ghost:not(:disabled):hover {
+  color: var(--accent-strong);
+}
+.mo-btn-danger {
+  background: #f2453d;
+  color: #ffffff;
+}
+.mo-btn-danger:not(:disabled):hover {
+  opacity: 0.88;
+}

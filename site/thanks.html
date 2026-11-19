@@ -1,34 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="tokyo-night">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Thank you — Focus Zen</title>
     <!-- Buyers land here from Stripe; it is not a page to find in search. -->
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#151a2d" />
     <link rel="icon" type="image/png" href="./src/assets/icon-256.png" />
     <link rel="apple-touch-icon" href="./src/assets/icon-256.png" />
 
-    <link rel="preload" href="./src/fonts/gloock-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./src/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./src/fonts/inconsolata-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./src/thanks.page.css" />
   </head>
   <body>
-    <header class="bar"><div class="bar-inner wrap"><a class="mark" href="/">▌focus zen</a></div></header>
+    <header class="bar">
+      <div class="bar-inner mo-container">
+        <a class="brand" href="/"
+          ><img src="./src/assets/icon-256.png" alt="" width="32" height="32" /><span>Focus Zen</span></a
+        >
+      </div>
+    </header>
 
-    <main class="note wrap">
+    <main class="note mo-container">
       <img class="note-icon" src="./src/assets/icon-512.png" alt="" width="96" height="96" />
-      <p class="eyebrow">Payment complete</p>
+      <p class="kicker">Payment complete</p>
       <h1 class="title">Thank you. <em>Your download is ready.</em></h1>
       <p class="lede">You help keep Focus Zen free and open source for everyone.</p>
 
       <div class="actions">
-        <a
-          class="go"
-          href="https://github.com/adusingi/focus-zen/releases/download/v0.4.1/Focus-Zen_0.4.1_universal.dmg"
-          ><span>Download for Mac (.dmg)</span><span>↓</span></a
-        >
+        <a class="mo-btn mo-btn-lg mo-btn-primary" href="https://github.com/adusingi/focus-zen/releases/download/v0.4.1/Focus-Zen_0.4.1_universal.dmg">Download for Mac (.dmg)</a>
       </div>
       <ul class="meta">
         <li>Version 0.4.1</li>
@@ -51,11 +53,9 @@
       </section>
     </main>
 
-    <footer class="note-foot wrap">
-      <p class="signature">
-        © 2026 Focus Zen · Mobayilo – Japan · <span lang="ja">心を込めて作る</span> — built with love, for human
-        happiness.
-      </p>
-    </footer>
+    <!-- The shared Mobayilo footer, from site/footer.json: `pnpm site:footer` rewrites it. -->
+    <!-- mo-footer:start -->
+<footer class="mo-footer mo-footer--full"><div class="mo-footer__inner"><div class="mo-footer__brand"><a class="mo-footer__brand-link" href="/"><img class="mo-footer__logo" src="./src/assets/icon-256.png" alt="" /><span class="mo-footer__name">Focus Zen</span></a><p class="mo-footer__description">One list. Nothing else. A simple to-do list that keeps your list on your Mac.</p><span class="mo-footer__tag"><span class="mo-footer__tag-mark" aria-hidden="true"></span><span class="mo-footer__tag-text">Open source · MIT</span></span><div class="mo-footer__social"><a class="mo-footer__social-link" href="https://github.com/adusingi/focus-zen" aria-label="Focus Zen on GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.7 3.3 1.2.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.1 0-1.1.4-2 1.1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7.7.7 1.1 1.6 1.1 2.7 0 3.9-2.4 4.8-4.7 5.1.4.4.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a></div><p class="mo-footer__copyright">© 2026 Focus Zen · Mobayilo – Japan</p></div><div class="mo-footer__columns mo-footer__columns--2"><nav class="mo-footer__column" aria-label="Get it"><p class="mo-footer__title">Get it</p><ul><li><a href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403">Support &amp; download ($5)</a></li><li><a href="https://github.com/adusingi/focus-zen/releases/latest">Free on GitHub</a></li></ul></nav><nav class="mo-footer__column" aria-label="Project"><p class="mo-footer__title">Project</p><ul><li><a href="https://github.com/adusingi/focus-zen">Source code</a></li><li><a href="https://github.com/adusingi/focus-zen/releases">Releases</a></li></ul></nav></div></div><div class="mo-footer__bottom"><span>心を込めて作る — built with love, for human happiness.</span><span>Mobayilo</span></div></footer>
+<!-- mo-footer:end -->
   </body>
 </html>

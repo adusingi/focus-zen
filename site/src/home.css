@@ -1,5 +1,6 @@
 /* The home page's layout: the hero (alone, centred), four text-and-picture
-   sections, the principles row, and the closing call with the footer. The
+   sections, the principles cards, and the closing call. As on the design
+   system's own site, sections are separated by whitespace, not rules. The
    pictures themselves are in home-media.css. */
 
 /* ── Hero: alone and centred ───────────────────────────────── */
@@ -7,29 +8,20 @@
 .hero {
   display: grid;
   justify-items: center;
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 112px;
+  padding-bottom: 32px;
   text-align: center;
 }
 
-.hero .eyebrow {
-  margin-bottom: 24px;
-}
-
-.title {
-  margin: 0;
-  font: 400 clamp(52px, 8vw, 104px) / 1 var(--serif);
-  color: var(--bright);
-}
-
-.title em {
-  display: block;
+.hero .title {
+  max-width: 12ch;
 }
 
 .hero-lede {
-  margin: 32px 0 0;
-  color: var(--text);
-  font: clamp(17px, 2vw, 22px) var(--mono);
+  margin: var(--mo-space-2xl) 0 0;
+  color: var(--muted);
+  font: 400 clamp(1.125rem, 2vw, 1.375rem) / 1.5 var(--mo-font-sans);
+  letter-spacing: 0.02em;
 }
 
 .hero-actions {
@@ -37,44 +29,14 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 16px 32px;
-  margin-top: 48px;
+  gap: var(--mo-space-lg) var(--mo-space-2xl);
+  margin-top: var(--mo-space-3xl);
 }
 
 .hero-note {
-  margin: 32px 0 12px;
-  color: var(--dim);
-  font-size: 14px;
-}
-
-.hero .meta {
-  justify-content: center;
-}
-
-/* The working list, in 01 / Write. */
-.try {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 14px;
-  min-width: 0;
-}
-
-/* The hint only makes sense once try-list.js has made the list work. */
-.try-hint {
-  visibility: hidden;
-  margin: 0;
-  color: var(--dim);
-  font: 13px var(--mono);
-  text-align: right;
-}
-
-.js .try-hint {
-  visibility: visible;
-}
-
-.try-hint kbd {
-  color: var(--go);
-  font: inherit;
+  margin: var(--mo-space-2xl) 0 var(--mo-space-md);
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 
 /* ── Sections: text on one side, the picture on the other ──── */
@@ -83,10 +45,8 @@
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   align-items: center;
-  gap: 64px;
-  padding-top: 96px;
-  padding-bottom: 96px;
-  border-top: 1px solid var(--line);
+  gap: var(--mo-space-4xl);
+  padding-top: 128px;
 }
 
 .step.is-flipped {
@@ -98,122 +58,102 @@
 }
 
 .step-text .h2 {
-  margin-bottom: 18px;
+  margin-bottom: var(--mo-space-lg);
 }
 
 .step-text .lede {
   max-width: 38ch;
 }
 
-/* ── What it leaves out ────────────────────────────────────── */
+/* The working list, in Write. */
+.try {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--mo-space-md);
+  min-width: 0;
+}
+
+/* The hint only makes sense once try-list.js has made the list work. */
+.try-hint {
+  visibility: hidden;
+  margin: 0;
+  color: var(--muted-soft);
+  font: var(--mo-text-caption);
+  text-align: right;
+}
+
+.js .try-hint {
+  visibility: visible;
+}
+
+.try-hint kbd {
+  padding: 1px 7px;
+  border-radius: 6px;
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+  font: inherit;
+  font-weight: 700;
+}
+
+/* ── What it leaves out: four cards ────────────────────────── */
 
 .left-out {
-  padding-top: 96px;
-  padding-bottom: 96px;
-  border-top: 1px solid var(--line);
+  padding-top: 128px;
 }
 
 .principles {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 48px;
-  border-top: 1px solid var(--line-strong);
+  gap: var(--mo-space-lg);
+  margin-top: var(--mo-space-3xl);
 }
 
-.principles div {
-  padding: 24px 24px 8px 0;
+.principle {
+  padding: var(--mo-space-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--mo-radius-lg);
+  background: var(--panel);
+  box-shadow: var(--card-shadow);
 }
 
-.principles div + div {
-  padding-left: 24px;
-  border-left: 1px solid var(--line);
-}
-
-.principles h3 {
-  margin: 0 0 6px;
-  color: var(--bright);
-  font: 600 17px var(--sans);
-}
-
-.principles h3::before {
-  content: "▌";
+.principle svg {
+  display: block;
   color: var(--accent);
-  font-family: var(--mono);
 }
 
-.principles p {
+.principle h3 {
+  margin: var(--mo-space-lg) 0 var(--mo-space-sm);
+  font: var(--mo-text-h3);
+}
+
+.principle p {
   margin: 0;
-  color: var(--dim);
-  font-size: 15px;
+  color: var(--muted);
+  font-size: 0.9375rem;
 }
 
-/* ── The closing call and the footer ───────────────────────── */
+/* ── The closing call ──────────────────────────────────────── */
 
 .end {
-  border-top: 1px solid var(--line);
-}
-
-.end-cta {
   display: grid;
   justify-items: center;
-  gap: 22px;
-  padding-top: 112px;
-  padding-bottom: 96px;
+  padding-top: 160px;
+  padding-bottom: 128px;
   text-align: center;
 }
 
-.end-cta img {
-  margin-bottom: 8px;
+.end img {
+  margin-bottom: var(--mo-space-2xl);
+  border-radius: 18px;
+  box-shadow: var(--card-shadow);
 }
 
-.end-cta .actions {
-  justify-items: center;
-  margin-top: 10px;
+.end .lede {
+  margin-top: var(--mo-space-lg);
 }
 
-.end-cta .meta {
-  justify-content: center;
-}
-
-.foot {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
-  padding-top: 28px;
-  padding-bottom: 28px;
-  border-top: 1px solid var(--line);
-  color: var(--dim);
-  font: 13px var(--mono);
-}
-
-.foot-mark {
-  justify-self: start;
-  padding-left: 10px;
-  border-left: 3px solid var(--accent);
-  color: var(--bright);
-  font-size: 15px;
-}
-
-.foot-links {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-}
-
-.foot-links a {
-  text-decoration: none;
-}
-
-.foot-links a:hover {
-  color: var(--bright);
-}
-
-.foot .signature {
-  grid-column: 1 / -1;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  text-align: center;
+.end .meta {
+  margin-top: var(--mo-space-xl);
 }
 
 /* ── Narrow screens: one column, text before picture ───────── */
@@ -222,68 +162,42 @@
   .step,
   .step.is-flipped {
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
-  }
-
-  .hero {
-    padding-top: 72px;
-    padding-bottom: 80px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    gap: 14px;
+    gap: var(--mo-space-2xl);
+    padding-top: 96px;
   }
 
   .step.is-flipped .step-text {
     order: 0;
   }
 
-  .step,
   .left-out {
-    padding-top: 64px;
-    padding-bottom: 64px;
-  }
-
-  .try-hint {
-    text-align: left;
+    padding-top: 96px;
   }
 
   .principles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .principles div:nth-child(3) {
-    padding-left: 0;
-    border-left: 0;
+  .try-hint {
+    text-align: left;
   }
 }
 
 @media (max-width: 640px) {
+  .hero {
+    padding-top: 72px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
   .principles {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .principles div,
-  .principles div + div {
-    padding: 18px 0 0;
-    border-left: 0;
-  }
-
-  .end-cta {
-    padding-top: 80px;
-    padding-bottom: 64px;
-  }
-
-  .foot {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .foot-links {
-    justify-content: flex-start;
-  }
-
-  .foot .signature {
-    text-align: left;
+  .end {
+    padding-top: 112px;
+    padding-bottom: 96px;
   }
 }

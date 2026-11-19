@@ -1,28 +1,54 @@
 /* The home page's pictures, drawn in HTML so they stay sharp: the Focus Zen
-   window (the working list and History), the menu bar, and the file panel. */
-
-/* ── The Focus Zen window ──────────────────────────────────── */
+   window (the working list and History), the menu bar, and the file panel.
+   The window keeps the app's own dark greys, so it looks like Focus Zen; the
+   frames around it use the theme. */
 
 .app {
+  --app: #1a1b1e;
+  --app-line: #2a2b30;
+  --app-text: #e6e6e8;
+  --app-dim: #707176;
   margin: 0;
-  border: 1px solid var(--line-strong);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
   background: var(--app);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--mo-shadow-lg), var(--card-shadow);
 }
 
 .app-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   border-bottom: 1px solid var(--app-line);
+  background: #242529;
 }
 
 .app-bar i {
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #3a3b40;
+}
+
+.app-bar i:nth-child(1) {
+  background: #ff5f57;
+}
+
+.app-bar i:nth-child(2) {
+  background: #febc2e;
+}
+
+.app-bar i:nth-child(3) {
+  background: #28c840;
+}
+
+.app-bar span {
+  flex: 1;
+  margin-right: 52px;
+  color: #9a9ba0;
+  font: 600 13px system-ui, -apple-system, sans-serif;
+  text-align: center;
 }
 
 /* The History screenshot ends well above its bottom edge; show only the filled part. */
@@ -33,13 +59,7 @@
   object-position: top;
 }
 
-.app-bar span {
-  flex: 1;
-  margin-right: 46px;
-  color: #8e8f94;
-  font: 13px var(--sans);
-  text-align: center;
-}
+/* ── The list (try-list.js makes it work) ──────────────────── */
 
 .app-list {
   min-height: 330px;
@@ -54,7 +74,7 @@
   gap: 16px;
   height: 46px;
   color: var(--app-text);
-  font: 18px var(--sans);
+  font: 18px system-ui, -apple-system, sans-serif;
 }
 
 .app-list .box {
@@ -72,7 +92,7 @@
 }
 
 .app-list button.box:hover {
-  border-color: var(--go);
+  border-color: var(--accent);
 }
 
 .app-list .text {
@@ -96,7 +116,7 @@
   background: none;
   color: var(--app-text);
   font: inherit;
-  caret-color: var(--go);
+  caret-color: var(--accent);
 }
 
 /* A ticked line fades, then try-list.js removes it — as in the app. */
@@ -108,8 +128,8 @@
 }
 
 .app-list li.is-done .box {
-  border-color: var(--go);
-  background: var(--go);
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 /* ── The menu bar ──────────────────────────────────────────── */
@@ -117,8 +137,11 @@
 .menubar-scene {
   height: 240px;
   margin: 0;
+  overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--panel);
+  border-radius: var(--mo-radius-lg);
+  background: linear-gradient(160deg, var(--panel-soft), var(--panel));
+  box-shadow: var(--card-shadow);
 }
 
 .menubar {
@@ -128,10 +151,9 @@
   gap: 18px;
   height: 34px;
   padding: 0 18px;
-  border-bottom: 1px solid var(--line);
-  background: #15161d;
-  color: var(--bright);
-  font: 500 14px var(--sans);
+  background: rgb(var(--background-rgb) / 0.7);
+  color: var(--foreground);
+  font: 500 14px system-ui, -apple-system, sans-serif;
 }
 
 .menubar-item {
@@ -140,10 +162,11 @@
   place-items: center;
   width: 30px;
   height: 24px;
+  border-radius: 5px;
 }
 
 .menubar-item.is-open {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 /* tray.png is a black template icon; the menu bar here is dark. */
@@ -157,80 +180,84 @@
   left: 0;
   display: grid;
   width: 250px;
-  padding: 6px;
-  border: 1px solid var(--line-strong);
-  background: #1c1d26;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #2a2f47;
+  box-shadow: var(--mo-shadow-lg);
   text-align: left;
 }
 
 .menu-item {
   display: flex;
   justify-content: space-between;
-  padding: 5px 12px;
-  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: var(--foreground);
   font-weight: 400;
 }
 
 .menu-item.is-on {
-  background: var(--selection);
-  color: var(--bright);
+  background: var(--accent);
+  color: var(--background);
 }
 
 .menu-key {
-  color: var(--dim);
+  opacity: 0.7;
 }
 
 .menu-rule {
   height: 1px;
-  margin: 6px 12px;
-  background: var(--line-strong);
+  margin: 5px 10px;
+  background: var(--line);
 }
 
-/* ── The file panel ────────────────────────────────────────── */
+/* ── The file panel: a design-system card ──────────────────── */
 
 .vault {
   margin: 0;
-  padding: 28px 32px;
+  padding: var(--mo-space-2xl);
   border: 1px solid var(--line);
+  border-radius: var(--mo-radius-lg);
   background: var(--panel);
+  box-shadow: var(--card-shadow);
 }
 
 .vault-head {
-  margin-bottom: 16px;
-  color: var(--dim);
-  font: 13px var(--mono);
-  letter-spacing: 0.12em;
+  margin-bottom: var(--mo-space-lg);
+  color: var(--accent);
+  font: 600 0.6875rem/1.4 var(--mo-font-mono);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .vault-path {
   display: block;
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  color: var(--dim);
-  font: 14px/1.6 var(--mono);
+  padding: var(--mo-space-md) var(--mo-space-lg);
+  border-radius: var(--mo-radius-sm);
+  background: var(--panel-soft);
+  color: var(--muted);
+  font: 0.875rem/1.6 var(--mo-font-mono);
   overflow-wrap: anywhere;
 }
 
 .vault-path b {
-  color: var(--go);
-  font-weight: 400;
+  color: var(--accent-strong);
+  font-weight: 600;
 }
 
 .vault-checks {
   display: grid;
-  gap: 8px;
-  margin: 22px 0 0;
+  gap: var(--mo-space-sm);
+  margin: var(--mo-space-xl) 0 0;
   padding: 0;
   list-style: none;
-  font: 15px var(--mono);
+  font-size: 0.9375rem;
 }
 
 .vault-checks li::before {
   content: "✓  ";
-  color: var(--go);
+  color: var(--accent);
 }
 
 @media (max-width: 640px) {
@@ -239,6 +266,6 @@
   }
 
   .vault {
-    padding: 22px 18px;
+    padding: var(--mo-space-xl) var(--mo-space-lg);
   }
 }

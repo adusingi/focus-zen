@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="tokyo-night">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,7 @@
       content="One list. Nothing else. A simple to-do list for macOS that keeps your list on your Mac: no account, no cloud, no tracking. Free and open source; $5 if you want to support it."
     />
     <link rel="canonical" href="https://focus.mobayilo.com/" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#151a2d" />
     <link rel="icon" type="image/png" href="./src/assets/icon-256.png" />
     <link rel="apple-touch-icon" href="./src/assets/icon-256.png" />
 
@@ -25,27 +25,28 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preload" href="./src/fonts/gloock-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./src/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./src/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./src/fonts/inconsolata-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./src/index.page.css" />
     <script type="module" src="./src/try-list.js"></script>
   </head>
   <body>
     <header class="bar" id="top">
-      <div class="bar-inner wrap">
-        <a class="mark" href="/">▌focus zen</a>
-        <a class="bar-go" href="#get">Get Focus Zen</a>
+      <div class="bar-inner mo-container">
+        <a class="brand" href="/"
+          ><img src="./src/assets/icon-256.png" alt="" width="32" height="32" /><span>Focus Zen</span></a
+        >
+        <a class="mo-btn mo-btn-sm mo-btn-primary" href="#get">Get Focus Zen</a>
       </div>
     </header>
 
-    <section class="hero wrap">
-      <p class="eyebrow">A simple to-do list for Mac</p>
+    <section class="hero mo-container">
+      <p class="kicker">A simple to-do list for Mac</p>
       <h1 class="title">One list. <em>Nothing else.</em></h1>
       <p class="hero-lede">Write it down. Check it off. Move on.</p>
       <div class="hero-actions">
-        <a class="go" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
-          ><span>Support &amp; download</span><span>$5 →</span></a
+        <a class="mo-btn mo-btn-lg mo-btn-primary buy" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+          ><span>Support &amp; download</span><span class="price">$5</span></a
         >
         <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or get it free on GitHub →</a>
       </div>
@@ -57,9 +58,9 @@
     </section>
 
     <main>
-      <section class="step wrap">
+      <section class="step mo-container">
         <div class="step-text">
-          <p class="eyebrow">01 / Write</p>
+          <p class="kicker">01 / Write</p>
           <h2 class="h2">Type. Enter. <em>Done.</em></h2>
           <p class="lede">⌥Space in any app. Write a line, press Enter. Each line shows how long it has waited.</p>
         </div>
@@ -79,9 +80,9 @@
         </div>
       </section>
 
-      <section class="step is-flipped wrap">
+      <section class="step is-flipped mo-container">
         <div class="step-text">
-          <p class="eyebrow">02 / Look back</p>
+          <p class="kicker">02 / Look back</p>
           <h2 class="h2">Nothing is <em>lost.</em></h2>
           <p class="lede">⌘Y shows every day on a calendar. Click a day, or search them all.</p>
         </div>
@@ -97,9 +98,9 @@
         </figure>
       </section>
 
-      <section class="step wrap">
+      <section class="step mo-container">
         <div class="step-text">
-          <p class="eyebrow">03 / Step away</p>
+          <p class="kicker">03 / Step away</p>
           <h2 class="h2">Out of <em>the way.</em></h2>
           <p class="lede">Close the window. Focus Zen waits in the menu bar, with no Dock icon.</p>
         </div>
@@ -131,9 +132,9 @@
         </figure>
       </section>
 
-      <section class="step is-flipped wrap" id="privacy">
+      <section class="step is-flipped mo-container" id="privacy">
         <div class="step-text">
-          <p class="eyebrow">04 / Private</p>
+          <p class="kicker">04 / Private</p>
           <h2 class="h2">Never leaves <em>your Mac.</em></h2>
           <p class="lede">No account, no cloud, no tracking. One small file, on your Mac only.</p>
         </div>
@@ -149,55 +150,55 @@
         </figure>
       </section>
 
-      <section class="left-out wrap">
-        <p class="eyebrow">05 / Left out</p>
+      <section class="left-out mo-container">
+        <p class="kicker">05 / Left out</p>
         <h2 class="h2">Less to manage. <em>More attention.</em></h2>
         <div class="principles">
-          <div>
+          <div class="principle">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9h15M12 16h15M12 23h15" /><circle cx="6" cy="9" r="1.5" /><circle cx="6" cy="16" r="1.5" /><circle cx="6" cy="23" r="1.5" /></svg>
             <h3>Nothing to organise</h3>
             <p>No projects, tags or due dates.</p>
           </div>
-          <div>
+          <div class="principle">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 22V14a7 7 0 0 1 11.5-5.4M23 13.5V22l2.5 3H6.5L9 22" /><path d="M13.5 28a2.5 2.5 0 0 0 5 0" /><path d="M5 5 27 27" /></svg>
             <h3>No noise</h3>
             <p>No notifications, badges or streaks.</p>
           </div>
-          <div>
+          <div class="principle">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 4C14 6 8 13 7 27" /><path d="M7 27c9-1 15-6 17-15" /><path d="M10 19c4 0 7-1 10-4" /></svg>
             <h3>Small and native</h3>
             <p>9.9 MB. Starts in a moment.</p>
           </div>
-          <div>
+          <div class="principle">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 10 5 16l6 6M21 10l6 6-6 6M18 7l-4 18" /></svg>
             <h3>Open source</h3>
             <p>MIT licence, on GitHub.</p>
           </div>
         </div>
       </section>
-    </main>
 
-    <footer class="end" id="get">
-      <div class="end-cta wrap">
-        <img src="./src/assets/icon-256.png" alt="" width="72" height="72" />
+      <section class="end mo-container" id="get">
+        <img src="./src/assets/icon-256.png" alt="" width="80" height="80" />
         <h2 class="h2">Free and open source. <em>Worth a coffee?</em></h2>
         <p class="lede">$5 keeps it simple, private and maintained.</p>
-        <div class="actions">
-          <a class="go" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
-            ><span>Support &amp; download</span><span>$5 →</span></a
+        <div class="hero-actions">
+          <a class="mo-btn mo-btn-lg mo-btn-primary buy" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+            ><span>Support &amp; download</span><span class="price">$5</span></a
           >
-          <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or free on GitHub</a>
+          <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or get it free on GitHub →</a>
         </div>
         <ul class="meta">
-          <li>no subscription</li>
-          <li>macOS 12+</li>
+          <li>No subscription</li>
+          <li>macOS 12 or later</li>
           <li>Apple Silicon and Intel</li>
+          <li>9.9 MB</li>
         </ul>
-      </div>
-      <div class="foot wrap">
-        <span class="foot-mark">focus zen</span>
-        <span>© 2026 Focus Zen · MIT · Mobayilo – Japan</span>
-        <span class="foot-links"
-          ><a href="https://github.com/adusingi/focus-zen">GitHub</a><a href="#top">Back to top</a></span
-        >
-        <p class="signature"><span lang="ja">心を込めて作る</span> — built with love, for human happiness.</p>
-      </div>
-    </footer>
+      </section>
+    </main>
+
+    <!-- The shared Mobayilo footer, from site/footer.json: `pnpm site:footer` rewrites it. -->
+    <!-- mo-footer:start -->
+<footer class="mo-footer mo-footer--full"><div class="mo-footer__inner"><div class="mo-footer__brand"><a class="mo-footer__brand-link" href="/"><img class="mo-footer__logo" src="./src/assets/icon-256.png" alt="" /><span class="mo-footer__name">Focus Zen</span></a><p class="mo-footer__description">One list. Nothing else. A simple to-do list that keeps your list on your Mac.</p><span class="mo-footer__tag"><span class="mo-footer__tag-mark" aria-hidden="true"></span><span class="mo-footer__tag-text">Open source · MIT</span></span><div class="mo-footer__social"><a class="mo-footer__social-link" href="https://github.com/adusingi/focus-zen" aria-label="Focus Zen on GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.7 3.3 1.2.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.2-4.7-5.1 0-1.1.4-2 1.1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7.7.7 1.1 1.6 1.1 2.7 0 3.9-2.4 4.8-4.7 5.1.4.4.7 1 .7 2v3c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a></div><p class="mo-footer__copyright">© 2026 Focus Zen · Mobayilo – Japan</p></div><div class="mo-footer__columns mo-footer__columns--2"><nav class="mo-footer__column" aria-label="Get it"><p class="mo-footer__title">Get it</p><ul><li><a href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403">Support &amp; download ($5)</a></li><li><a href="https://github.com/adusingi/focus-zen/releases/latest">Free on GitHub</a></li></ul></nav><nav class="mo-footer__column" aria-label="Project"><p class="mo-footer__title">Project</p><ul><li><a href="https://github.com/adusingi/focus-zen">Source code</a></li><li><a href="https://github.com/adusingi/focus-zen/releases">Releases</a></li></ul></nav></div></div><div class="mo-footer__bottom"><span>心を込めて作る — built with love, for human happiness.</span><span>Mobayilo</span></div></footer>
+<!-- mo-footer:end -->
   </body>
 </html>

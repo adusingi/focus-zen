@@ -2,6 +2,8 @@
    (With one <link> per file, Vite moved the CSS shared with /thanks into a chunk that
    loaded after the page's own rules, and the shared rules won.) */
 @import "./fonts.css";
+@import "./design-system.css";
+@import "./mo-footer.css";
 @import "./base.css";
 @import "./home.css";
 @import "./home-media.css";

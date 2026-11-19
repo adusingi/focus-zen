@@ -9,10 +9,9 @@ timestamp: 2026-11-19T06:15:46+09:00
 
 No paused work.
 
-## Site: move to the Mobayilo design system, Tokyo Night theme (paused 2026-11-19)
+## Site: move to the Mobayilo design system, Tokyo Night theme (done 2026-11-19)
 
-Owner asked: "go for https://design.mobayilo.com/ a tokyo night theme". Not started in code; current
-site (bae6f63) is the Clarity Board look. Work on `main` (no feature branch). Plan:
+Owner asked: "go for https://design.mobayilo.com/ a tokyo night theme". Done on `main`; the plan was:
 
 - Vendor `site/src/design-system.css` again from `~/Documents/Code/p/design-system` (see the old
   copy in `3cf3f6c^`): the `tokyo-night` theme block from `themes/src/themes.ts`, the `:root`

@@ -1,31 +1,8 @@
-/* What every page shares: Clarity Board's look (clarity-board/src/app/_landing/
-   landing.module.css) — a black ground, Tokyo Night ink, Gloock titles over Onest
-   text, Inconsolata labels, flat sharp-cornered panels and one green action. */
+/* What every page shares, on the design system's tokens (design-system.css):
+   the base (from the design-system site's globals.css), the bar, the type
+   (kicker, titles, lede) and the buy button with its price chip. */
 
-:root {
-  color-scheme: dark;
-  --bg: #000;
-  --panel: #0b0c12;
-  --line: #1c1f2e;
-  --line-strong: #3b4261;
-  --text: #c0caf5;
-  --bright: #e1e2f8;
-  --dim: #7a82a8;
-  --accent: #7aa2f7;
-  --go: #9ece6a;
-  --go-wash: rgba(158, 206, 106, 0.08);
-  --purple: #bb9af7;
-  --selection: #283457;
-  /* The app's own window colours, so the drawings look like Focus Zen. */
-  --app: #1a1b1e;
-  --app-line: #26272b;
-  --app-text: #e6e6e8;
-  --app-dim: #707176;
-  --serif: "Gloock", Georgia, serif;
-  --sans: "Onest", system-ui, sans-serif;
-  --mono: "Inconsolata", ui-monospace, monospace;
-  --jp: "Noto Serif JP", serif;
-}
+/* ── Base ──────────────────────────────────────────────────── */
 
 * {
   box-sizing: border-box;
@@ -33,14 +10,21 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 63px; /* the sticky bar */
+  scroll-padding-top: 72px; /* the sticky bar */
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 16px/1.6 var(--sans);
+  min-width: 320px;
+  background: var(--background);
+  background-image: var(--page-gradient);
+  color: var(--foreground);
+  font: var(--mo-text-body);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -55,8 +39,8 @@ img {
 }
 
 ::selection {
-  background: var(--selection);
-  color: var(--bright);
+  background: var(--accent-wash);
+  color: var(--foreground);
 }
 
 :focus-visible {
@@ -64,144 +48,178 @@ img {
   outline-offset: 3px;
 }
 
-.wrap {
-  max-width: 1180px;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.mo-container {
+  width: min(1120px, 100%);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--mo-space-xl);
 }
 
-/* ▌focus zen — the mark, as in Clarity's ▌clarity. */
-.mark {
-  font: 700 17px var(--mono);
-  color: var(--accent);
-  text-decoration: none;
-}
+/* ── The bar: brand left, one small button right ───────────── */
 
-/* The top bar, as Clarity's: the mark left, one small green action right, sticky
-   over a blurred black. */
 .bar {
   position: sticky;
   top: 0;
   z-index: 5;
   border-bottom: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgb(var(--background-rgb) / 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .bar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  min-height: 62px;
+  gap: var(--mo-space-xl);
+  min-height: 68px;
 }
 
-.bar-go {
-  padding: 6px 14px;
-  background: var(--go);
-  color: var(--bg);
-  font: 600 14px var(--mono);
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mo-space-md);
+  font: 600 1.5rem/1 var(--mo-font-heading);
   text-decoration: none;
 }
 
-.bar-go:hover {
-  filter: brightness(1.08);
+.brand img {
+  border-radius: 7px;
 }
 
-/* Titles: the second half in purple, as Clarity's title line. */
-.title em,
-.h2 em {
-  color: var(--purple);
-  font-style: normal;
-}
+/* ── Type ──────────────────────────────────────────────────── */
 
-.eyebrow {
-  margin: 0 0 14px;
-  color: var(--dim);
-  font: 13px/1 var(--mono);
-  letter-spacing: 0.12em;
+.kicker {
+  margin: 0 0 var(--mo-space-xl);
+  color: var(--accent);
+  font: 600 0.6875rem/1.4 var(--mo-font-mono);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
+.title,
 .h2 {
   margin: 0;
-  font: 400 clamp(34px, 4vw, 44px) / 1.08 var(--serif);
-  color: var(--bright);
+  font-family: var(--mo-font-heading);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.title {
+  font-size: clamp(3.25rem, 9vw, 6.75rem);
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+/* The design system's hero emphasis: italic, lighter, in accent-strong. */
+.title em,
+.h2 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent-strong);
 }
 
 .lede {
   margin: 0;
-  color: var(--dim);
+  color: var(--muted);
+  font: var(--mo-text-body-lg);
 }
 
-/* The one green action: label left, price or arrow right. */
-.go {
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
-  min-width: 280px;
-  padding: 12px 16px;
-  background: var(--go);
-  color: var(--bg);
-  font: 600 15px var(--mono);
-  text-decoration: none;
+/* ── The buy button: a primary pill with the price in a chip ── */
+
+.buy {
+  gap: var(--mo-space-lg);
+  padding-right: 8px;
 }
 
-.go:hover {
-  filter: brightness(1.08);
+.price {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  height: 36px;
+  padding: 0 var(--mo-space-md);
+  border-radius: var(--mo-radius-full);
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .soft {
-  color: var(--dim);
-  font: 14px var(--mono);
-  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 6px;
 }
 
 .soft:hover {
-  color: var(--bright);
+  color: var(--foreground);
+  text-decoration-color: var(--accent);
 }
 
-.actions {
-  display: grid;
-  justify-items: start;
-  gap: 12px;
-}
-
-/* Small mono facts, each behind a ▌. */
+/* Small facts, joined by middots. */
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
+  justify-content: center;
+  gap: 4px 0;
   margin: 0;
   padding: 0;
   list-style: none;
-  color: var(--dim);
-  font: 13px var(--mono);
+  color: var(--muted-soft);
+  font: var(--mo-text-caption);
 }
 
-.meta li::before {
-  content: "▌";
-  color: var(--accent);
+.meta li + li::before {
+  content: "·";
+  margin: 0 10px;
 }
 
-/* The owner's signature, one quiet line. */
-.signature {
-  margin: 0;
-  color: var(--dim);
-  font: 12px var(--mono);
+/* The shared footer sits on the page colour. */
+.mo-footer {
+  --mo-footer-bg: var(--background);
+  --mo-footer-max-width: 1120px;
+  --mo-footer-accent: var(--accent);
 }
 
-.signature [lang="ja"] {
-  font-family: var(--jp);
+.mo-footer__name {
+  font-family: var(--mo-font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.mo-footer__logo {
+  border-radius: 7px;
 }
 
 @media (max-width: 640px) {
-  .wrap {
-    padding: 0 16px;
+  .mo-container {
+    padding: 0 var(--mo-space-lg);
   }
 
-  .go {
-    min-width: min(280px, 100%);
+  /* Facts wrap here; a line must not start with a middot. */
+  .meta {
+    gap: 4px 18px;
   }
+
+  .meta li + li::before {
+    content: none;
+  }
+}
+
+/* 心を込めて作る needs the Japanese face; Inconsolata has no such glyphs. */
+.mo-footer__bottom {
+  font-family: var(--mo-font-sans), "Noto Serif JP", serif;
 }

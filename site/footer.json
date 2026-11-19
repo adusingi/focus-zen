@@ -1,0 +1,29 @@
+{
+  "variant": "full",
+  "brand": {
+    "name": "Focus Zen",
+    "href": "/",
+    "logo": { "src": "./src/assets/icon-256.png", "alt": "" },
+    "description": "One list. Nothing else. A simple to-do list that keeps your list on your Mac.",
+    "tag": "Open source · MIT"
+  },
+  "copyright": "© 2026 Focus Zen · Mobayilo – Japan",
+  "columns": [
+    {
+      "title": "Get it",
+      "links": [
+        { "label": "Support & download ($5)", "href": "https://buy.stripe.com/dRm28r1J49lh5h78uq9k403" },
+        { "label": "Free on GitHub", "href": "https://github.com/adusingi/focus-zen/releases/latest" }
+      ]
+    },
+    {
+      "title": "Project",
+      "links": [
+        { "label": "Source code", "href": "https://github.com/adusingi/focus-zen" },
+        { "label": "Releases", "href": "https://github.com/adusingi/focus-zen/releases" }
+      ]
+    }
+  ],
+  "social": [{ "kind": "github", "href": "https://github.com/adusingi/focus-zen", "label": "Focus Zen on GitHub" }],
+  "bottom": { "left": "心を込めて作る — built with love, for human happiness.", "right": "Mobayilo" }
+}
