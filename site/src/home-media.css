@@ -1,5 +1,5 @@
 /* The home page's pictures, drawn in HTML so they stay sharp: the Focus Zen
-   window (hero and History), the keys, the menu bar, and the file panel. */
+   window (the working list and History), the menu bar, and the file panel. */
 
 /* ── The Focus Zen window ──────────────────────────────────── */
 
@@ -110,48 +110,6 @@
 .app-list li.is-done .box {
   border-color: var(--go);
   background: var(--go);
-}
-
-/* ── The keys ──────────────────────────────────────────────── */
-
-.keys {
-  display: grid;
-  gap: 18px;
-  padding: 36px 40px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-}
-
-.keys p {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  margin: 0;
-  color: var(--dim);
-  font: 15px var(--mono);
-}
-
-.keycaps {
-  display: flex;
-  gap: 8px;
-  width: 190px;
-}
-
-.keys kbd {
-  display: grid;
-  place-items: center;
-  min-width: 48px;
-  height: 48px;
-  padding: 0 12px;
-  border: 1px solid var(--line-strong);
-  border-bottom-width: 3px;
-  background: #11131c;
-  color: var(--bright);
-  font: 600 17px var(--mono);
-}
-
-.keys kbd.wide {
-  min-width: 96px;
 }
 
 /* ── The menu bar ──────────────────────────────────────────── */
@@ -276,24 +234,6 @@
 }
 
 @media (max-width: 640px) {
-  .keys {
-    padding: 24px 20px;
-  }
-
-  .keycaps {
-    width: 150px;
-  }
-
-  .keys kbd {
-    min-width: 40px;
-    height: 40px;
-    font-size: 15px;
-  }
-
-  .keys kbd.wide {
-    min-width: 76px;
-  }
-
   .menu {
     width: 230px;
   }

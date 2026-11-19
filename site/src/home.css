@@ -1,58 +1,58 @@
-/* The home page's layout: the hero (title left, a working list right), four
-   text-and-picture sections, the principles row, and the closing call with the
-   footer. The pictures themselves are in home-media.css. */
+/* The home page's layout: the hero (alone, centred), four text-and-picture
+   sections, the principles row, and the closing call with the footer. The
+   pictures themselves are in home-media.css. */
 
-/* ── Hero ──────────────────────────────────────────────────── */
+/* ── Hero: alone and centred ───────────────────────────────── */
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  align-items: center;
-  gap: 64px;
-  /* One screen under the 63px bar, but never a vast one. */
-  min-height: min(calc(100vh - 63px), 820px);
-  padding-top: 48px;
-  padding-bottom: 64px;
+  justify-items: center;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  text-align: center;
 }
 
-.hero-text {
-  display: grid;
-  justify-items: start;
-  gap: 32px;
-}
-
-.hero-head .eyebrow {
-  margin-bottom: 18px;
+.hero .eyebrow {
+  margin-bottom: 24px;
 }
 
 .title {
   margin: 0;
-  font: 400 clamp(48px, 5.4vw, 76px) / 1.02 var(--serif);
+  font: 400 clamp(52px, 8vw, 104px) / 1 var(--serif);
   color: var(--bright);
-}
-
-.hero-lede {
-  margin: 20px 0 0;
-  color: var(--text);
-  font: 17px var(--mono);
-}
-
-.hero-foot {
-  display: grid;
-  gap: 10px;
-}
-
-.hero-note {
-  margin: 0;
-  color: var(--dim);
-  font-size: 14px;
 }
 
 .title em {
   display: block;
 }
 
-.hero-media {
+.hero-lede {
+  margin: 32px 0 0;
+  color: var(--text);
+  font: clamp(17px, 2vw, 22px) var(--mono);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 32px;
+  margin-top: 48px;
+}
+
+.hero-note {
+  margin: 32px 0 12px;
+  color: var(--dim);
+  font-size: 14px;
+}
+
+.hero .meta {
+  justify-content: center;
+}
+
+/* The working list, in 01 / Write. */
+.try {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 14px;
@@ -219,7 +219,6 @@
 /* ── Narrow screens: one column, text before picture ───────── */
 
 @media (max-width: 860px) {
-  .hero,
   .step,
   .step.is-flipped {
     grid-template-columns: minmax(0, 1fr);
@@ -227,8 +226,13 @@
   }
 
   .hero {
-    min-height: 0;
-    padding-top: 32px;
+    padding-top: 72px;
+    padding-bottom: 80px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 14px;
   }
 
   .step.is-flipped .step-text {

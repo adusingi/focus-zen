@@ -40,40 +40,20 @@
     </header>
 
     <section class="hero wrap">
-      <div class="hero-text">
-        <div class="hero-head">
-          <p class="eyebrow">A simple to-do list for Mac</p>
-          <h1 class="title">One list. <em>Nothing else.</em></h1>
-          <p class="hero-lede">Write it down. Check it off. Move on.</p>
-        </div>
-        <div class="actions">
-          <a class="go" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
-            ><span>Support &amp; download</span><span>$5 →</span></a
-          >
-          <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or get it free on GitHub →</a>
-        </div>
-        <div class="hero-foot">
-          <p class="hero-note">Open source. If it helps you, $5, the price of a coffee, keeps it going.</p>
-          <ul class="meta">
-            <li>macOS 12 or later</li>
-            <li>Apple Silicon and Intel</li>
-          </ul>
-        </div>
+      <p class="eyebrow">A simple to-do list for Mac</p>
+      <h1 class="title">One list. <em>Nothing else.</em></h1>
+      <p class="hero-lede">Write it down. Check it off. Move on.</p>
+      <div class="hero-actions">
+        <a class="go" href="https://buy.stripe.com/dRm28r1J49lh5h78uq9k403"
+          ><span>Support &amp; download</span><span>$5 →</span></a
+        >
+        <a class="soft" href="https://github.com/adusingi/focus-zen/releases/latest">or get it free on GitHub →</a>
       </div>
-      <div class="hero-media">
-        <!-- The Focus Zen window. try-list.js makes it work; without it, it is a picture. -->
-        <figure class="app" aria-label="The Focus Zen window">
-          <div class="app-bar" aria-hidden="true"><i></i><i></i><i></i><span>Focus Zen</span></div>
-          <ul class="app-list" data-try-list>
-            <li><span class="box"></span><span class="text">Send the revised quote to the Osaka team</span><span class="age">3d</span></li>
-            <li><span class="box"></span><span class="text">Book train tickets for Friday</span><span class="age">1d</span></li>
-            <li><span class="box"></span><span class="text">Reply to Sam about the workshop dates</span><span class="age">5h</span></li>
-            <li><span class="box"></span><span class="text">Renew the domain before the 20th</span><span class="age">12m</span></li>
-            <li class="is-new"><span class="box"></span></li>
-          </ul>
-        </figure>
-        <p class="try-hint"><kbd>enter</kbd> add · <kbd>click</kbd> done · try it</p>
-      </div>
+      <p class="hero-note">Open source. If it helps you, $5, the price of a coffee, keeps it going.</p>
+      <ul class="meta">
+        <li>macOS 12 or later</li>
+        <li>Apple Silicon and Intel</li>
+      </ul>
     </section>
 
     <main>
@@ -83,10 +63,19 @@
           <h2 class="h2">Type. Enter. <em>Done.</em></h2>
           <p class="lede">⌥Space in any app. Write a line, press Enter. Each line shows how long it has waited.</p>
         </div>
-        <div class="keys" role="img" aria-label="Keys: Option Space opens, Enter adds, Command Enter finishes">
-          <p><span class="keycaps"><kbd>⌥</kbd><kbd class="wide">Space</kbd></span><span>open</span></p>
-          <p><span class="keycaps"><kbd class="wide">Enter</kbd></span><span>add</span></p>
-          <p><span class="keycaps"><kbd>⌘</kbd><kbd class="wide">Enter</kbd></span><span>done</span></p>
+        <div class="try">
+          <!-- The Focus Zen window. try-list.js makes it work; without it, it is a picture. -->
+          <figure class="app" aria-label="The Focus Zen window">
+            <div class="app-bar" aria-hidden="true"><i></i><i></i><i></i><span>Focus Zen</span></div>
+            <ul class="app-list" data-try-list>
+              <li><span class="box"></span><span class="text">Send the revised quote to the Osaka team</span><span class="age">3d</span></li>
+              <li><span class="box"></span><span class="text">Book train tickets for Friday</span><span class="age">1d</span></li>
+              <li><span class="box"></span><span class="text">Reply to Sam about the workshop dates</span><span class="age">5h</span></li>
+              <li><span class="box"></span><span class="text">Renew the domain before the 20th</span><span class="age">12m</span></li>
+              <li class="is-new"><span class="box"></span></li>
+            </ul>
+          </figure>
+          <p class="try-hint"><kbd>enter</kbd> add · <kbd>click</kbd> done · try it</p>
         </div>
       </section>
 
