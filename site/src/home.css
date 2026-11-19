@@ -1,0 +1,263 @@
+/* The home page's layout: the hero (title left, a working list right), four
+   text-and-picture sections, the principles row, and the closing call with the
+   footer. The pictures themselves are in home-media.css. */
+
+/* ── Hero ──────────────────────────────────────────────────── */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  gap: 64px;
+  min-height: min(100vh, 860px);
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+.hero-text {
+  display: grid;
+  justify-items: start;
+  gap: 36px;
+}
+
+.title {
+  margin: 0;
+  font: 400 clamp(48px, 5.4vw, 76px) / 1.02 var(--serif);
+  color: var(--bright);
+}
+
+.title em {
+  display: block;
+}
+
+.hero-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  min-width: 0;
+}
+
+/* The hint only makes sense once try-list.js has made the list work. */
+.try-hint {
+  visibility: hidden;
+  margin: 0;
+  color: var(--dim);
+  font: 13px var(--mono);
+  text-align: right;
+}
+
+.js .try-hint {
+  visibility: visible;
+}
+
+.try-hint kbd {
+  color: var(--go);
+  font: inherit;
+}
+
+/* ── Sections: text on one side, the picture on the other ──── */
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  gap: 64px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  border-top: 1px solid var(--line);
+}
+
+.step.is-flipped {
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+}
+
+.step.is-flipped .step-text {
+  order: 2;
+}
+
+.step-text .h2 {
+  margin-bottom: 18px;
+}
+
+.step-text .lede {
+  max-width: 38ch;
+}
+
+/* ── What it leaves out ────────────────────────────────────── */
+
+.left-out {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  border-top: 1px solid var(--line);
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 48px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.principles div {
+  padding: 24px 24px 8px 0;
+}
+
+.principles div + div {
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+
+.principles h3 {
+  margin: 0 0 6px;
+  color: var(--bright);
+  font: 600 17px var(--sans);
+}
+
+.principles h3::before {
+  content: "▌";
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.principles p {
+  margin: 0;
+  color: var(--dim);
+  font-size: 15px;
+}
+
+/* ── The closing call and the footer ───────────────────────── */
+
+.end {
+  border-top: 1px solid var(--line);
+}
+
+.end-cta {
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding-top: 112px;
+  padding-bottom: 96px;
+  text-align: center;
+}
+
+.end-cta img {
+  margin-bottom: 8px;
+}
+
+.end-cta .actions {
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.end-cta .meta {
+  justify-content: center;
+}
+
+.foot {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+  font: 13px var(--mono);
+}
+
+.foot-mark {
+  justify-self: start;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent);
+  color: var(--bright);
+  font-size: 15px;
+}
+
+.foot-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.foot-links a {
+  text-decoration: none;
+}
+
+.foot-links a:hover {
+  color: var(--bright);
+}
+
+.foot .signature {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+/* ── Narrow screens: one column, text before picture ───────── */
+
+@media (max-width: 860px) {
+  .hero,
+  .step,
+  .step.is-flipped {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .hero {
+    min-height: 0;
+    padding-top: 32px;
+  }
+
+  .step.is-flipped .step-text {
+    order: 0;
+  }
+
+  .step,
+  .left-out {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .try-hint {
+    text-align: left;
+  }
+
+  .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .principles div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .principles div,
+  .principles div + div {
+    padding: 18px 0 0;
+    border-left: 0;
+  }
+
+  .end-cta {
+    padding-top: 80px;
+    padding-bottom: 64px;
+  }
+
+  .foot {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .foot-links {
+    justify-content: flex-start;
+  }
+
+  .foot .signature {
+    text-align: left;
+  }
+}

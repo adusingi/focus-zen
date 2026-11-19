@@ -1,0 +1,174 @@
+/* What every page shares: Clarity Board's look (clarity-board/src/app/_landing/
+   landing.module.css) — a black ground, Tokyo Night ink, Gloock titles over Onest
+   text, Inconsolata labels, flat sharp-cornered panels and one green action. */
+
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --panel: #0b0c12;
+  --line: #1c1f2e;
+  --line-strong: #3b4261;
+  --text: #c0caf5;
+  --bright: #e1e2f8;
+  --dim: #7a82a8;
+  --accent: #7aa2f7;
+  --go: #9ece6a;
+  --go-wash: rgba(158, 206, 106, 0.08);
+  --purple: #bb9af7;
+  --selection: #283457;
+  /* The app's own window colours, so the drawings look like Focus Zen. */
+  --app: #1a1b1e;
+  --app-line: #26272b;
+  --app-text: #e6e6e8;
+  --app-dim: #707176;
+  --serif: "Gloock", Georgia, serif;
+  --sans: "Onest", system-ui, sans-serif;
+  --mono: "Inconsolata", ui-monospace, monospace;
+  --jp: "Noto Serif JP", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--bright);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ▌focus zen — the mark, as in Clarity's ▌clarity. */
+.mark {
+  font: 700 17px var(--mono);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Titles: the second half in purple, as Clarity's title line. */
+.title em,
+.h2 em {
+  color: var(--purple);
+  font-style: normal;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--dim);
+  font: 13px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.h2 {
+  margin: 0;
+  font: 400 clamp(34px, 4vw, 44px) / 1.08 var(--serif);
+  color: var(--bright);
+}
+
+.lede {
+  margin: 0;
+  color: var(--dim);
+}
+
+/* The one green action: label left, price or arrow right. */
+.go {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  min-width: 280px;
+  padding: 12px 16px;
+  background: var(--go);
+  color: var(--bg);
+  font: 600 15px var(--mono);
+  text-decoration: none;
+}
+
+.go:hover {
+  filter: brightness(1.08);
+}
+
+.soft {
+  color: var(--dim);
+  font: 14px var(--mono);
+  text-decoration: none;
+}
+
+.soft:hover {
+  color: var(--bright);
+}
+
+.actions {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+}
+
+/* Small mono facts, each behind a ▌. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--dim);
+  font: 13px var(--mono);
+}
+
+.meta li::before {
+  content: "▌";
+  color: var(--accent);
+}
+
+/* The owner's signature, one quiet line. */
+.signature {
+  margin: 0;
+  color: var(--dim);
+  font: 12px var(--mono);
+}
+
+.signature [lang="ja"] {
+  font-family: var(--jp);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 16px;
+  }
+
+  .go {
+    min-width: min(280px, 100%);
+  }
+}

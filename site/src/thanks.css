@@ -1,103 +1,134 @@
-/* The page buyers land on after Stripe: one download, then three install steps. */
+/* /thanks and the 404 page: the mark, then one centred note. */
 
-.lp-thanks {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 72px;
+.top {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.note {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 22px;
+  max-width: 760px;
+  padding-top: 96px;
+  padding-bottom: 96px;
   text-align: center;
 }
 
-.lp-thanks-icon {
-  width: 112px;
-  height: 112px;
-  margin-bottom: var(--mo-space-2xl);
-}
-
-.lp-thanks h1 {
+.note .eyebrow {
   margin: 0;
-  font-family: var(--mo-font-heading);
-  font-size: clamp(2.75rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
 }
 
-.lp-thanks .lp-lede {
-  margin-bottom: var(--mo-space-2xl);
-  text-wrap: balance;
+.note .title {
+  margin: 0;
+  font: 400 clamp(40px, 6vw, 60px) / 1.05 var(--serif);
+  color: var(--bright);
 }
 
-/* Install steps: a recessed paper panel, left-aligned for reading. */
+.note .title em {
+  display: block;
+}
 
-.lp-steps {
-  width: min(100%, 620px);
-  margin-top: 96px;
-  padding: var(--mo-space-2xl);
-  border-radius: var(--mo-radius-lg);
-  background: var(--panel-soft);
+.note .actions {
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.note .meta {
+  justify-content: center;
+}
+
+.install {
+  width: 100%;
+  margin-top: 40px;
+  padding: 28px 32px;
+  border: 1px solid var(--line);
+  background: var(--panel);
   text-align: left;
 }
 
-.lp-steps h2 {
-  margin: 0 0 var(--mo-space-xl);
-  font: var(--mo-text-h2);
+.install-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  color: var(--bright);
+  font: 700 15px var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.lp-steps ol {
+.install-head::before {
+  content: "";
+  width: 3px;
+  height: 16px;
+  background: var(--accent);
+}
+
+.install-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.install ol {
   display: grid;
-  gap: var(--mo-space-lg);
+  gap: 10px;
   margin: 0;
-  padding-left: 1.4em;
-  color: var(--foreground);
-  font: var(--mo-text-body);
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
 }
 
-.lp-steps ol ul {
-  display: grid;
-  gap: var(--mo-space-sm);
-  margin: var(--mo-space-md) 0 0;
-  padding-left: 1.1em;
-  color: var(--muted);
+.install li {
+  position: relative;
+  padding-left: 34px;
+  counter-increment: step;
 }
 
-.lp-steps code {
-  padding: 1px 6px;
-  border-radius: 6px;
-  background: var(--panel);
-  font-family: var(--mo-font-mono);
-  font-size: 0.9em;
+.install li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font: 15px/1.6 var(--mono);
 }
 
-.lp-steps-note {
-  margin: var(--mo-space-xl) 0 0;
-  padding-top: var(--mo-space-lg);
+.install strong {
+  color: var(--bright);
+  font-weight: 600;
+}
+
+.install code {
+  color: var(--go);
+  font-family: var(--mono);
+}
+
+.install-note {
+  margin: 20px 0 0;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
-  color: var(--muted);
-  font: var(--mo-text-body);
-  font-size: 0.9375rem;
+  color: var(--dim);
+  font-size: 14px;
 }
 
-/* On white the signature line uses --muted (7.4:1), not the 50 % paper of the ink band. */
-.lp-thanks-foot {
-  padding-top: 96px;
-  padding-bottom: var(--mo-space-3xl);
+.note-foot {
+  padding-top: 24px;
+  padding-bottom: 32px;
+  border-top: 1px solid var(--line);
   text-align: center;
 }
 
-.lp-thanks-foot .lp-legal {
-  margin: 0;
-  color: var(--muted);
-}
-
-@media (max-width: 560px) {
-  .lp-thanks {
-    padding-top: var(--mo-space-3xl);
+@media (max-width: 640px) {
+  .note {
+    padding-top: 56px;
+    padding-bottom: 64px;
   }
 
-  .lp-steps {
-    margin-top: 72px;
-    padding: var(--mo-space-xl);
+  .install {
+    padding: 22px 18px;
   }
 }

@@ -1,63 +1,60 @@
 <!doctype html>
-<html lang="en" data-theme="focus-zen">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Thank you — Focus Zen</title>
     <!-- Buyers land here from Stripe; it is not a page to find in search. -->
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/png" href="./src/assets/icon-256.png" />
     <link rel="apple-touch-icon" href="./src/assets/icon-256.png" />
 
+    <link rel="preload" href="./src/fonts/gloock-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./src/fonts/inconsolata-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./src/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="./src/thanks.page.css" />
   </head>
   <body>
-    <header class="lp-top mo-container">
-      <a class="lp-brand" href="/">
-        <img src="./src/assets/icon-256.png" alt="" width="36" height="36" />
-        <span>Focus Zen</span>
-      </a>
-    </header>
+    <header class="top wrap"><a class="mark" href="/">▌focus zen</a></header>
 
-    <main class="lp-thanks mo-container">
-      <img class="lp-thanks-icon" src="./src/assets/icon-512.png" alt="" width="112" height="112" />
-      <p class="lp-kicker">Payment complete</p>
-      <h1>Thank you for your support.<br /><em>Your download is ready.</em></h1>
-      <p class="lp-lede">You help keep Focus Zen free and open source for everyone.</p>
+    <main class="note wrap">
+      <img class="note-icon" src="./src/assets/icon-512.png" alt="" width="96" height="96" />
+      <p class="eyebrow">Payment complete</p>
+      <h1 class="title">Thank you. <em>Your download is ready.</em></h1>
+      <p class="lede">You help keep Focus Zen free and open source for everyone.</p>
 
-      <a
-        class="mo-btn mo-btn-lg mo-btn-primary"
-        href="https://github.com/adusingi/focus-zen/releases/download/v0.4.1/Focus-Zen_0.4.1_universal.dmg"
-        >Download for Mac (.dmg)</a
-      >
-      <ul class="lp-meta lp-meta-list">
+      <div class="actions">
+        <a
+          class="go"
+          href="https://github.com/adusingi/focus-zen/releases/download/v0.4.1/Focus-Zen_0.4.1_universal.dmg"
+          ><span>Download for Mac (.dmg)</span><span>↓</span></a
+        >
+      </div>
+      <ul class="meta">
         <li>Version 0.4.1</li>
         <li>9.9 MB</li>
-        <li>macOS 12 or later</li>
+        <li>macOS 12+</li>
         <li>Apple Silicon and Intel</li>
       </ul>
 
-      <section class="lp-steps" aria-labelledby="steps-title">
-        <h2 id="steps-title">Install in three steps</h2>
+      <section class="install" aria-labelledby="install-title">
+        <h2 class="install-head" id="install-title">Install</h2>
         <ol>
           <li>Open the <code>.dmg</code> and drag <strong>Focus Zen</strong> into <strong>Applications</strong>.</li>
-          <li>Open Focus Zen. It is notarized by Apple, so it opens like any other app.</li>
+          <li>Open Focus Zen. Apple notarizes it, so it opens like any other app.</li>
           <li>Type your first line, and press Enter.</li>
         </ol>
-        <p class="lp-steps-note">
-          If you chose “Yes” at checkout, we email you when a new version is out. Your receipt from Stripe is
-          in your inbox.
+        <p class="install-note">
+          If you chose “Yes” at checkout, we email you when a new version is out. Your receipt from Stripe is in
+          your inbox.
         </p>
       </section>
     </main>
 
-    <footer class="lp-thanks-foot mo-container">
-      <p class="lp-legal">
-        <span>© 2026 Focus Zen · Mobayilo – Japan</span>
-        <span><span class="lp-jp" lang="ja">心を込めて作る</span> — built with love, for human happiness.</span>
+    <footer class="note-foot wrap">
+      <p class="signature">
+        © 2026 Focus Zen · Mobayilo – Japan · <span lang="ja">心を込めて作る</span> — built with love, for human
+        happiness.
       </p>
     </footer>
   </body>
